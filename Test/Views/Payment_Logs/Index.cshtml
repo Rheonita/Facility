@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Test.Models.Payment_Logs>
+
+@{
+    ViewBag.Title = "Выдача зарплаты";
+}
+
+<h2>Данные о зарплатах</h2>
+
+<p>
+    @Html.ActionLink("Выдать ЗП", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>            
+            Кол-во участий
+        </th>
+        <th>
+            Сумма бонуса
+        </th>
+        <th>
+            Зарплата
+        </th>
+        <th>
+            Общая сумма
+        </th>
+        <th>
+            Участия в закупках
+        </th>
+        <th>
+            Участие в производствах
+        </th>
+        <th>
+            Участия в продажах
+        </th>
+        <th>
+            Дата выдачи ЗП
+        </th>
+        <th>
+            Доп.плата
+        </th>
+        <th>
+            Сотрудник
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Amount_of_work)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sum_of_Bonus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Salary)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Total_Payment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BuyStock_Amount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Manufacture_Amount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sales_Amount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PaymentDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Additional_Pay)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Employers.Name_of_Emp)
+        </td>
+        <td>
+            @Html.ActionLink("Ред.", "Edit", new { id=item.ID_PaymentLog }) |
+            @Html.ActionLink("Инфо", "Details", new { id=item.ID_PaymentLog }) |
+            @Html.ActionLink("Удалить", "Delete", new { id=item.ID_PaymentLog })
+        </td>
+    </tr>
+}
+
+</table>

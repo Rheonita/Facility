@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Test.Models.Credit_Repayment>
+
+@{
+    ViewBag.Title = "Выплаты";
+}
+
+<h2>Выплаты по кредитам</h2>
+
+<p>
+    @Html.ActionLink("Добавить выплату", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Дата выплаты
+        </th>
+        <th>
+            Сумма Штрафа
+        </th>
+        <th>
+           Сумма выплаты
+        </th>
+        <th>
+            Кредит
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date_of_Repayment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fair_Sum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sum_of_Repayment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Credit_Info.Credit_Description)
+        </td>
+        <td>
+            @Html.ActionLink("Изменить", "Edit", new { id=item.ID_Repayment }) |
+            @Html.ActionLink("Удалить", "Delete", new { id=item.ID_Repayment })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Test.Models.Budjet>
+
+@{
+    ViewBag.Title = "Бюджет";
+}
+
+<h2>Бюджет</h2>
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table class="table">
+    <tr>
+        <th>
+            Сумма Бюджета
+        </th>
+        <th>
+            Процент наценки
+        </th>
+        <th>
+            Процент бонуса сотрудников
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Budget_Sum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sale_Markup)
+        </td>
+        <td>@Html.DisplayFor(modelItem => item.Emp_Sale_Bonus)</td>
+           
+        <td>
+            @Html.ActionLink("Изменить", "Edit", new { id = item.ID_Budget })
+        </td>
+    </tr>
+}
+</table>

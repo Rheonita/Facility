@@ -1,0 +1,64 @@
+﻿@model Test.Models.Employers
+
+@{
+    ViewBag.Title = "Удаление";
+}
+
+<h2>Удалить запись</h2>
+
+<h3>Вы уверены что хотите удалить запись??</h3>
+<div>
+    <h4>Следующий сотрудник будет удалён</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            ФИО:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name_of_Emp)
+        </dd>
+
+        <dt>
+            Зарплата:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Payment)
+        </dd>
+
+        <dt>
+            Адрес:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Adress)
+        </dd>
+
+        <dt>
+            Номер телефона:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phone_Number)
+        </dd>
+
+        <dt>
+            Должность:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ranks.Rank_name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить" class="btn btn-default" /> |
+            @Html.ActionLink("Вернуться к списку", "Index")
+        </div>
+    }
+</div>

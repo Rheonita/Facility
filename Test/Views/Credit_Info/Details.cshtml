@@ -1,0 +1,82 @@
+﻿@model Test.Models.Credit_Info
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Credit_Info</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Credit_Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Credit_Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sum_of_Credit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sum_of_Credit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date_of_issue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date_of_issue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Credit_Term)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Credit_Term)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Year_Percent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Year_Percent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fine_Sum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fine_Sum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sum_of_Month_Pay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sum_of_Month_Pay)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Total_Sum_With_Year)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Total_Sum_With_Year)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_Credit }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

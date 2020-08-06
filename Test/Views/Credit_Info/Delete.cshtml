@@ -1,0 +1,88 @@
+﻿@model Test.Models.Credit_Info
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Credit_Info</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Credit_Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Credit_Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sum_of_Credit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sum_of_Credit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date_of_issue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date_of_issue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Credit_Term)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Credit_Term)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Year_Percent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Year_Percent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fine_Sum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fine_Sum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sum_of_Month_Pay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sum_of_Month_Pay)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Total_Sum_With_Year)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Total_Sum_With_Year)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

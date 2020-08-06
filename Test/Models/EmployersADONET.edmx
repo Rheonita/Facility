@@ -1,0 +1,1824 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище SRSModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Budjet">
+          <Key>
+            <PropertyRef Name="ID_Budget" />
+          </Key>
+          <Property Name="ID_Budget" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Budget_Sum" Type="float" Nullable="false" />
+          <Property Name="Sale_Markup" Type="float" />
+          <Property Name="Emp_Sale_Bonus" Type="float" />
+        </EntityType>
+        <EntityType Name="BuyStock">
+          <Key>
+            <PropertyRef Name="ID_BuyStock" />
+          </Key>
+          <Property Name="ID_BuyStock" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FK_Stock" Type="int" Nullable="false" />
+          <Property Name="Total_Amount" Type="float" Nullable="false" />
+          <Property Name="Sum" Type="float" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="FK_Employer" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Credit_Info">
+          <Key>
+            <PropertyRef Name="ID_Credit" />
+          </Key>
+          <Property Name="ID_Credit" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Credit_Description" Type="varchar(max)" Nullable="false" />
+          <Property Name="Sum_of_Credit" Type="float" Nullable="false" />
+          <Property Name="Date_of_issue" Type="date" Nullable="false" />
+          <Property Name="Credit_Term" Type="smallint" Nullable="false" />
+          <Property Name="Year_Percent" Type="tinyint" Nullable="false" />
+          <Property Name="Fine_Sum" Type="float" Nullable="false" />
+          <Property Name="Sum_of_Month_Pay" Type="float" />
+          <Property Name="Total_Sum_With_Year" Type="float" />
+        </EntityType>
+        <EntityType Name="Credit_Repayment">
+          <Key>
+            <PropertyRef Name="ID_Repayment" />
+          </Key>
+          <Property Name="ID_Repayment" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FK_Credit" Type="int" Nullable="false" />
+          <Property Name="Date_of_Repayment" Type="date" Nullable="false" />
+          <Property Name="Fair_Sum" Type="float" />
+          <Property Name="Sum_of_Repayment" Type="float" />
+        </EntityType>
+        <EntityType Name="Employers">
+          <Key>
+            <PropertyRef Name="ID_Employers" />
+          </Key>
+          <Property Name="ID_Employers" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name_of_Emp" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="FK_Rank" Type="tinyint" Nullable="false" />
+          <Property Name="Payment" Type="float" Nullable="false" />
+          <Property Name="Adress" Type="nchar" MaxLength="75" />
+          <Property Name="Phone_Number" Type="nchar" MaxLength="13" />
+        </EntityType>
+        <EntityType Name="Finished_Production">
+          <Key>
+            <PropertyRef Name="ID_FinPr" />
+          </Key>
+          <Property Name="ID_FinPr" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name_FinPr" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="FK_Measurement_Unit" Type="tinyint" Nullable="false" />
+          <Property Name="Sum" Type="float" Nullable="false" />
+          <Property Name="Total_Amount" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ingredients">
+          <Key>
+            <PropertyRef Name="ID_Ingredient" />
+          </Key>
+          <Property Name="ID_Ingredient" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FK_Production" Type="int" Nullable="false" />
+          <Property Name="FK_Stock" Type="int" Nullable="false" />
+          <Property Name="Total_Amount" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Manufacture">
+          <Key>
+            <PropertyRef Name="ID_Manufacture" />
+          </Key>
+          <Property Name="ID_Manufacture" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FK_Production" Type="int" Nullable="false" />
+          <Property Name="Total_Amount" Type="float" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="FK_Employer" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Measurement_Unit">
+          <Key>
+            <PropertyRef Name="ID_MerUn" />
+          </Key>
+          <Property Name="ID_MerUn" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name_MerUn" Type="nchar" MaxLength="35" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Payment_Logs">
+          <Key>
+            <PropertyRef Name="ID_PaymentLog" />
+          </Key>
+          <Property Name="ID_PaymentLog" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FK_Employer" Type="int" Nullable="false" />
+          <Property Name="Amount_of_work" Type="int" />
+          <Property Name="Sum_of_Bonus" Type="float" />
+          <Property Name="Salary" Type="float" />
+          <Property Name="Total_Payment" Type="float" />
+          <Property Name="BuyStock_Amount" Type="int" />
+          <Property Name="Manufacture_Amount" Type="int" />
+          <Property Name="Sales_Amount" Type="int" />
+          <Property Name="PaymentDate" Type="date" />
+          <Property Name="Additional_Pay" Type="float" />
+        </EntityType>
+        <EntityType Name="Ranks">
+          <Key>
+            <PropertyRef Name="ID_Rank" />
+          </Key>
+          <Property Name="ID_Rank" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Rank_name" Type="nchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sales_of_Prod">
+          <Key>
+            <PropertyRef Name="ID_SalesProd" />
+          </Key>
+          <Property Name="ID_SalesProd" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FK_Production" Type="int" Nullable="false" />
+          <Property Name="Total_Amount" Type="float" Nullable="false" />
+          <Property Name="Sum" Type="float" />
+          <Property Name="Date" Type="smalldatetime" Nullable="false" />
+          <Property Name="FK_Employer" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Stock">
+          <Key>
+            <PropertyRef Name="ID_Stock" />
+          </Key>
+          <Property Name="ID_Stock" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name_of_Stock" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="FK_Measurement_Unit" Type="tinyint" Nullable="false" />
+          <Property Name="Sum" Type="float" Nullable="false" />
+          <Property Name="Total_Amount" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_BuyStock_Employers">
+          <End Role="Employers" Type="Self.Employers" Multiplicity="1" />
+          <End Role="BuyStock" Type="Self.BuyStock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employers">
+              <PropertyRef Name="ID_Employers" />
+            </Principal>
+            <Dependent Role="BuyStock">
+              <PropertyRef Name="FK_Employer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BuyStock_Stock">
+          <End Role="Stock" Type="Self.Stock" Multiplicity="1" />
+          <End Role="BuyStock" Type="Self.BuyStock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stock">
+              <PropertyRef Name="ID_Stock" />
+            </Principal>
+            <Dependent Role="BuyStock">
+              <PropertyRef Name="FK_Stock" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Credit_Repayment_Credit_Info">
+          <End Role="Credit_Info" Type="Self.Credit_Info" Multiplicity="1" />
+          <End Role="Credit_Repayment" Type="Self.Credit_Repayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Credit_Info">
+              <PropertyRef Name="ID_Credit" />
+            </Principal>
+            <Dependent Role="Credit_Repayment">
+              <PropertyRef Name="FK_Credit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employers_Ranks">
+          <End Role="Ranks" Type="Self.Ranks" Multiplicity="1" />
+          <End Role="Employers" Type="Self.Employers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ranks">
+              <PropertyRef Name="ID_Rank" />
+            </Principal>
+            <Dependent Role="Employers">
+              <PropertyRef Name="FK_Rank" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Finished_Production_Measurement_Unit">
+          <End Role="Measurement_Unit" Type="Self.Measurement_Unit" Multiplicity="1" />
+          <End Role="Finished_Production" Type="Self.Finished_Production" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Measurement_Unit">
+              <PropertyRef Name="ID_MerUn" />
+            </Principal>
+            <Dependent Role="Finished_Production">
+              <PropertyRef Name="FK_Measurement_Unit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ingredients_Finished_Production">
+          <End Role="Finished_Production" Type="Self.Finished_Production" Multiplicity="1" />
+          <End Role="Ingredients" Type="Self.Ingredients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Finished_Production">
+              <PropertyRef Name="ID_FinPr" />
+            </Principal>
+            <Dependent Role="Ingredients">
+              <PropertyRef Name="FK_Production" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ingredients_Stock">
+          <End Role="Stock" Type="Self.Stock" Multiplicity="1" />
+          <End Role="Ingredients" Type="Self.Ingredients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stock">
+              <PropertyRef Name="ID_Stock" />
+            </Principal>
+            <Dependent Role="Ingredients">
+              <PropertyRef Name="FK_Stock" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Manufacture_Employers">
+          <End Role="Employers" Type="Self.Employers" Multiplicity="1" />
+          <End Role="Manufacture" Type="Self.Manufacture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employers">
+              <PropertyRef Name="ID_Employers" />
+            </Principal>
+            <Dependent Role="Manufacture">
+              <PropertyRef Name="FK_Employer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Manufacture_Finished_Production">
+          <End Role="Finished_Production" Type="Self.Finished_Production" Multiplicity="1" />
+          <End Role="Manufacture" Type="Self.Manufacture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Finished_Production">
+              <PropertyRef Name="ID_FinPr" />
+            </Principal>
+            <Dependent Role="Manufacture">
+              <PropertyRef Name="FK_Production" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Payment_Logs_Employers">
+          <End Role="Employers" Type="Self.Employers" Multiplicity="1" />
+          <End Role="Payment_Logs" Type="Self.Payment_Logs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employers">
+              <PropertyRef Name="ID_Employers" />
+            </Principal>
+            <Dependent Role="Payment_Logs">
+              <PropertyRef Name="FK_Employer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sales_of_Prod_Employers">
+          <End Role="Employers" Type="Self.Employers" Multiplicity="1" />
+          <End Role="Sales_of_Prod" Type="Self.Sales_of_Prod" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employers">
+              <PropertyRef Name="ID_Employers" />
+            </Principal>
+            <Dependent Role="Sales_of_Prod">
+              <PropertyRef Name="FK_Employer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sales_of_Prod_Finished_Production">
+          <End Role="Finished_Production" Type="Self.Finished_Production" Multiplicity="1" />
+          <End Role="Sales_of_Prod" Type="Self.Sales_of_Prod" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Finished_Production">
+              <PropertyRef Name="ID_FinPr" />
+            </Principal>
+            <Dependent Role="Sales_of_Prod">
+              <PropertyRef Name="FK_Production" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stock_Measurement_Unit">
+          <End Role="Measurement_Unit" Type="Self.Measurement_Unit" Multiplicity="1" />
+          <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Measurement_Unit">
+              <PropertyRef Name="ID_MerUn" />
+            </Principal>
+            <Dependent Role="Stock">
+              <PropertyRef Name="FK_Measurement_Unit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="Financial_SP_Delete_CreditInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_Credit" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Financial_SP_Delete_CreditPayment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_Repayment" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Financial_SP_Delete_Payment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_PaymentLog" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Financial_SP_Insert_CreditInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Credit_Description" Type="varchar(max)" Mode="In" />
+          <Parameter Name="Sum_of_Credit" Type="float" Mode="In" />
+          <Parameter Name="Date_of_issue" Type="date" Mode="In" />
+          <Parameter Name="Credit_Term" Type="smallint" Mode="In" />
+          <Parameter Name="Year_Percent" Type="tinyint" Mode="In" />
+          <Parameter Name="Fine_Sum" Type="float" Mode="In" />
+        </Function>
+        <Function Name="Financial_SP_Insert_CreditPayment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FK_Credit" Type="int" Mode="In" />
+          <Parameter Name="Date_of_Repayment" Type="date" Mode="In" />
+        </Function>
+        <Function Name="Financial_SP_Insert_Payment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FK_Employer" Type="int" Mode="In" />
+          <Parameter Name="Payment_Date" Type="date" Mode="In" />
+          <Parameter Name="Additional_Pay" Type="float" Mode="In" />
+        </Function>
+        <Function Name="Financial_SP_Select_CreditInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Financial_SP_Select_CreditPayment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Financial_SP_Select_Payment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Financial_SP_Update_CreditInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_Credit" Type="int" Mode="In" />
+          <Parameter Name="Credit_Description" Type="varchar(max)" Mode="In" />
+          <Parameter Name="Sum_of_Credit" Type="float" Mode="In" />
+          <Parameter Name="Date_of_issue" Type="date" Mode="In" />
+          <Parameter Name="Credit_Term" Type="smallint" Mode="In" />
+          <Parameter Name="Year_Percent" Type="tinyint" Mode="In" />
+          <Parameter Name="Fine_Sum" Type="float" Mode="In" />
+          <Parameter Name="Sum_of_Month_Pay" Type="float" Mode="In" />
+          <Parameter Name="Total_Sum_With_Year" Type="float" Mode="In" />
+        </Function>
+        <Function Name="Financial_SP_Update_CreditPayment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_Repayment" Type="int" Mode="In" />
+          <Parameter Name="FK_Credit" Type="int" Mode="In" />
+          <Parameter Name="Date_of_Repayment" Type="date" Mode="In" />
+          <Parameter Name="Fair_Sum" Type="float" Mode="In" />
+          <Parameter Name="Sum_of_Repayment" Type="float" Mode="In" />
+        </Function>
+        <Function Name="Financial_SP_Update_Payment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_PaymentLog" Type="int" Mode="In" />
+          <Parameter Name="FK_Employer" Type="int" Mode="In" />
+          <Parameter Name="Amount_of_work" Type="int" Mode="In" />
+          <Parameter Name="Sum_of_Bonus" Type="float" Mode="In" />
+          <Parameter Name="Salary" Type="float" Mode="In" />
+          <Parameter Name="Total_Payment" Type="float" Mode="In" />
+          <Parameter Name="BuyStock_Amount" Type="int" Mode="In" />
+          <Parameter Name="Manufacture_Amount" Type="int" Mode="In" />
+          <Parameter Name="Sales_Amount" Type="int" Mode="In" />
+          <Parameter Name="Payment_Date" Type="date" Mode="In" />
+          <Parameter Name="Additional_Pay" Type="float" Mode="In" />
+        </Function>
+        <Function Name="Production_SP_Delete_Buystocks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_BuyStock" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Production_SP_Delete_Manufacture" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_Manufacture" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Production_SP_Delete_Sales_Of_Prod" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_SalesProd" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Production_SP_Insert_Buystocks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FK_Stock" Type="int" Mode="In" />
+          <Parameter Name="Total_Amount" Type="float" Mode="In" />
+          <Parameter Name="Sum" Type="float" Mode="In" />
+          <Parameter Name="Date" Type="date" Mode="In" />
+          <Parameter Name="FK_Employer" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Production_SP_Insert_Manufacture" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FK_Production" Type="int" Mode="In" />
+          <Parameter Name="Total_Amount" Type="float" Mode="In" />
+          <Parameter Name="Date" Type="date" Mode="In" />
+          <Parameter Name="FK_Employer" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Production_SP_Insert_Sales_Of_Prod" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FK_Production" Type="int" Mode="In" />
+          <Parameter Name="Total_Amount" Type="float" Mode="In" />
+          <Parameter Name="Date" Type="smalldatetime" Mode="In" />
+          <Parameter Name="FK_Employer" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Production_SP_Select_Buystocks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Production_SP_Select_Manufacture" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Production_SP_Select_Sales_Of_Prod" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Production_SP_Update_Buystocks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_BuyStock" Type="int" Mode="In" />
+          <Parameter Name="FK_Stock" Type="int" Mode="In" />
+          <Parameter Name="Total_Amount" Type="float" Mode="In" />
+          <Parameter Name="Sum" Type="float" Mode="In" />
+          <Parameter Name="Date" Type="date" Mode="In" />
+          <Parameter Name="FK_Employer" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Production_SP_Update_Manufacture" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_Manufacture" Type="int" Mode="In" />
+          <Parameter Name="FK_Production" Type="int" Mode="In" />
+          <Parameter Name="Total_Amount" Type="float" Mode="In" />
+          <Parameter Name="Date" Type="date" Mode="In" />
+          <Parameter Name="FK_Employer" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Production_SP_Update_Sales_Of_Prod" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_SalesProd" Type="int" Mode="In" />
+          <Parameter Name="FK_Production" Type="int" Mode="In" />
+          <Parameter Name="Total_Amount" Type="float" Mode="In" />
+          <Parameter Name="Date" Type="smalldatetime" Mode="In" />
+          <Parameter Name="FK_Employer" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_Delete_Employers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_Employers" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_Delete_Ingredients" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_Ingredient" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_Delete_MeasurementUnit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_MerUn" Type="tinyint" Mode="In" />
+        </Function>
+        <Function Name="SP_Delete_Production" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_FinPr" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_Delete_Ranks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_Rank" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_Delete_Stock" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_Stock" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_Insert_Employers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Name_of_Emp" Type="nchar" Mode="In" />
+          <Parameter Name="FK_Rank" Type="tinyint" Mode="In" />
+          <Parameter Name="Payment" Type="float" Mode="In" />
+          <Parameter Name="Adress" Type="nchar" Mode="In" />
+          <Parameter Name="Phone_Number" Type="nchar" Mode="In" />
+        </Function>
+        <Function Name="SP_Insert_Ingredients" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FK_Production" Type="int" Mode="In" />
+          <Parameter Name="FK_Stock" Type="int" Mode="In" />
+          <Parameter Name="Total_Amount" Type="float" Mode="In" />
+        </Function>
+        <Function Name="SP_Insert_MeasurementUnit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Name_MerUn" Type="nchar" Mode="In" />
+        </Function>
+        <Function Name="SP_Insert_Production" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Name_FinPr" Type="nchar" Mode="In" />
+          <Parameter Name="FK_Measurement_Unit" Type="tinyint" Mode="In" />
+          <Parameter Name="Sum" Type="float" Mode="In" />
+          <Parameter Name="Total_Amount" Type="float" Mode="In" />
+        </Function>
+        <Function Name="SP_Insert_Ranks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Rank_name" Type="nchar" Mode="In" />
+        </Function>
+        <Function Name="SP_Insert_Stock" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Name_of_Stock" Type="nchar" Mode="In" />
+          <Parameter Name="FK_Measurement_Unit" Type="tinyint" Mode="In" />
+          <Parameter Name="Sum" Type="float" Mode="In" />
+          <Parameter Name="Total_Amount" Type="float" Mode="In" />
+        </Function>
+        <Function Name="SP_Select_Budjet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_Select_Employers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_Select_Ingredients" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_Select_MeasurementUnit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_Select_Production" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_Select_Ranks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_Select_Stock" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_Update_Budjet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_Budj" Type="int" Mode="In" />
+          <Parameter Name="Budj_Sum" Type="float" Mode="In" />
+          <Parameter Name="Sale_Markup" Type="float" Mode="In" />
+          <Parameter Name="Emp_Bonus" Type="float" Mode="In" />
+        </Function>
+        <Function Name="SP_Update_Employers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_Employers" Type="int" Mode="In" />
+          <Parameter Name="Name_of_Emp" Type="nchar" Mode="In" />
+          <Parameter Name="FK_Rank" Type="tinyint" Mode="In" />
+          <Parameter Name="Payment" Type="float" Mode="In" />
+          <Parameter Name="Adress" Type="nchar" Mode="In" />
+          <Parameter Name="Phone_Number" Type="nchar" Mode="In" />
+        </Function>
+        <Function Name="SP_Update_Ingredients" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_Ingredient" Type="int" Mode="In" />
+          <Parameter Name="FK_Production" Type="int" Mode="In" />
+          <Parameter Name="FK_Stock" Type="int" Mode="In" />
+          <Parameter Name="Total_Amount" Type="float" Mode="In" />
+        </Function>
+        <Function Name="SP_Update_MeasurementUnit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_MerUn" Type="tinyint" Mode="In" />
+          <Parameter Name="Name_MerUn" Type="nchar" Mode="In" />
+        </Function>
+        <Function Name="SP_Update_Production" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_FinPr" Type="int" Mode="In" />
+          <Parameter Name="Name_FinPr" Type="nchar" Mode="In" />
+          <Parameter Name="FK_Measurement_Unit" Type="tinyint" Mode="In" />
+          <Parameter Name="Sum" Type="float" Mode="In" />
+          <Parameter Name="Total_Amount" Type="float" Mode="In" />
+        </Function>
+        <Function Name="SP_Update_Ranks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_Rank" Type="int" Mode="In" />
+          <Parameter Name="Rank_name" Type="nchar" Mode="In" />
+        </Function>
+        <Function Name="SP_Update_Stock" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_Stock" Type="int" Mode="In" />
+          <Parameter Name="Name_of_Stock" Type="nchar" Mode="In" />
+          <Parameter Name="FK_Measurement_Unit" Type="tinyint" Mode="In" />
+          <Parameter Name="Sum" Type="float" Mode="In" />
+          <Parameter Name="Total_Amount" Type="float" Mode="In" />
+        </Function>
+        <EntityContainer Name="Хранилище SRSModelContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Budjet" EntityType="Self.Budjet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BuyStock" EntityType="Self.BuyStock" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Credit_Info" EntityType="Self.Credit_Info" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Credit_Repayment" EntityType="Self.Credit_Repayment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employers" EntityType="Self.Employers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Finished_Production" EntityType="Self.Finished_Production" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ingredients" EntityType="Self.Ingredients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Manufacture" EntityType="Self.Manufacture" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Measurement_Unit" EntityType="Self.Measurement_Unit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payment_Logs" EntityType="Self.Payment_Logs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ranks" EntityType="Self.Ranks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sales_of_Prod" EntityType="Self.Sales_of_Prod" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stock" EntityType="Self.Stock" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_BuyStock_Employers" Association="Self.FK_BuyStock_Employers">
+            <End Role="Employers" EntitySet="Employers" />
+            <End Role="BuyStock" EntitySet="BuyStock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BuyStock_Stock" Association="Self.FK_BuyStock_Stock">
+            <End Role="Stock" EntitySet="Stock" />
+            <End Role="BuyStock" EntitySet="BuyStock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Credit_Repayment_Credit_Info" Association="Self.FK_Credit_Repayment_Credit_Info">
+            <End Role="Credit_Info" EntitySet="Credit_Info" />
+            <End Role="Credit_Repayment" EntitySet="Credit_Repayment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employers_Ranks" Association="Self.FK_Employers_Ranks">
+            <End Role="Ranks" EntitySet="Ranks" />
+            <End Role="Employers" EntitySet="Employers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Finished_Production_Measurement_Unit" Association="Self.FK_Finished_Production_Measurement_Unit">
+            <End Role="Measurement_Unit" EntitySet="Measurement_Unit" />
+            <End Role="Finished_Production" EntitySet="Finished_Production" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ingredients_Finished_Production" Association="Self.FK_Ingredients_Finished_Production">
+            <End Role="Finished_Production" EntitySet="Finished_Production" />
+            <End Role="Ingredients" EntitySet="Ingredients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ingredients_Stock" Association="Self.FK_Ingredients_Stock">
+            <End Role="Stock" EntitySet="Stock" />
+            <End Role="Ingredients" EntitySet="Ingredients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Manufacture_Employers" Association="Self.FK_Manufacture_Employers">
+            <End Role="Employers" EntitySet="Employers" />
+            <End Role="Manufacture" EntitySet="Manufacture" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Manufacture_Finished_Production" Association="Self.FK_Manufacture_Finished_Production">
+            <End Role="Finished_Production" EntitySet="Finished_Production" />
+            <End Role="Manufacture" EntitySet="Manufacture" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payment_Logs_Employers" Association="Self.FK_Payment_Logs_Employers">
+            <End Role="Employers" EntitySet="Employers" />
+            <End Role="Payment_Logs" EntitySet="Payment_Logs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sales_of_Prod_Employers" Association="Self.FK_Sales_of_Prod_Employers">
+            <End Role="Employers" EntitySet="Employers" />
+            <End Role="Sales_of_Prod" EntitySet="Sales_of_Prod" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sales_of_Prod_Finished_Production" Association="Self.FK_Sales_of_Prod_Finished_Production">
+            <End Role="Finished_Production" EntitySet="Finished_Production" />
+            <End Role="Sales_of_Prod" EntitySet="Sales_of_Prod" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stock_Measurement_Unit" Association="Self.FK_Stock_Measurement_Unit">
+            <End Role="Measurement_Unit" EntitySet="Measurement_Unit" />
+            <End Role="Stock" EntitySet="Stock" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SRSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Budjet">
+          <Key>
+            <PropertyRef Name="ID_Budget" />
+          </Key>
+          <Property Name="ID_Budget" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Budget_Sum" Type="Double" Nullable="false" />
+          <Property Name="Sale_Markup" Type="Double" />
+          <Property Name="Emp_Sale_Bonus" Type="Double" />
+        </EntityType>
+        <EntityType Name="BuyStock">
+          <Key>
+            <PropertyRef Name="ID_BuyStock" />
+          </Key>
+          <Property Name="ID_BuyStock" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_Stock" Type="Int32" Nullable="false" />
+          <Property Name="Total_Amount" Type="Double" Nullable="false" />
+          <Property Name="Sum" Type="Double" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FK_Employer" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Employers" Relationship="Self.FK_BuyStock_Employers" FromRole="BuyStock" ToRole="Employers" />
+          <NavigationProperty Name="Stock" Relationship="Self.FK_BuyStock_Stock" FromRole="BuyStock" ToRole="Stock" />
+        </EntityType>
+        <EntityType Name="Employers">
+          <Key>
+            <PropertyRef Name="ID_Employers" />
+          </Key>
+          <Property Name="ID_Employers" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name_of_Emp" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="FK_Rank" Type="Byte" Nullable="false" />
+          <Property Name="Payment" Type="Double" Nullable="false" />
+          <Property Name="Adress" Type="String" MaxLength="75" FixedLength="true" Unicode="true" />
+          <Property Name="Phone_Number" Type="String" MaxLength="13" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="BuyStock" Relationship="Self.FK_BuyStock_Employers" FromRole="Employers" ToRole="BuyStock" />
+          <NavigationProperty Name="Ranks" Relationship="Self.FK_Employers_Ranks" FromRole="Employers" ToRole="Ranks" />
+          <NavigationProperty Name="Manufacture" Relationship="Self.FK_Manufacture_Employers" FromRole="Employers" ToRole="Manufacture" />
+          <NavigationProperty Name="Sales_of_Prod" Relationship="Self.FK_Sales_of_Prod_Employers" FromRole="Employers" ToRole="Sales_of_Prod" />
+          <NavigationProperty Name="Payment_Logs" Relationship="SRSModel.FK_Payment_Logs_Employers" FromRole="Employers" ToRole="Payment_Logs" />
+        </EntityType>
+        <EntityType Name="Finished_Production">
+          <Key>
+            <PropertyRef Name="ID_FinPr" />
+          </Key>
+          <Property Name="ID_FinPr" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name_FinPr" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="FK_Measurement_Unit" Type="Byte" Nullable="false" />
+          <Property Name="Sum" Type="Double" Nullable="false" />
+          <Property Name="Total_Amount" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Measurement_Unit" Relationship="Self.FK_Finished_Production_Measurement_Unit" FromRole="Finished_Production" ToRole="Measurement_Unit" />
+          <NavigationProperty Name="Ingredients" Relationship="Self.FK_Ingredients_Finished_Production" FromRole="Finished_Production" ToRole="Ingredients" />
+          <NavigationProperty Name="Manufacture" Relationship="Self.FK_Manufacture_Finished_Production" FromRole="Finished_Production" ToRole="Manufacture" />
+          <NavigationProperty Name="Sales_of_Prod" Relationship="Self.FK_Sales_of_Prod_Finished_Production" FromRole="Finished_Production" ToRole="Sales_of_Prod" />
+        </EntityType>
+        <EntityType Name="Ingredients">
+          <Key>
+            <PropertyRef Name="ID_Ingredient" />
+          </Key>
+          <Property Name="ID_Ingredient" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_Production" Type="Int32" Nullable="false" />
+          <Property Name="FK_Stock" Type="Int32" Nullable="false" />
+          <Property Name="Total_Amount" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Finished_Production" Relationship="Self.FK_Ingredients_Finished_Production" FromRole="Ingredients" ToRole="Finished_Production" />
+          <NavigationProperty Name="Stock" Relationship="Self.FK_Ingredients_Stock" FromRole="Ingredients" ToRole="Stock" />
+        </EntityType>
+        <EntityType Name="Manufacture">
+          <Key>
+            <PropertyRef Name="ID_Manufacture" />
+          </Key>
+          <Property Name="ID_Manufacture" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_Production" Type="Int32" Nullable="false" />
+          <Property Name="Total_Amount" Type="Double" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FK_Employer" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Employers" Relationship="Self.FK_Manufacture_Employers" FromRole="Manufacture" ToRole="Employers" />
+          <NavigationProperty Name="Finished_Production" Relationship="Self.FK_Manufacture_Finished_Production" FromRole="Manufacture" ToRole="Finished_Production" />
+        </EntityType>
+        <EntityType Name="Measurement_Unit">
+          <Key>
+            <PropertyRef Name="ID_MerUn" />
+          </Key>
+          <Property Name="ID_MerUn" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name_MerUn" Type="String" MaxLength="35" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Finished_Production" Relationship="Self.FK_Finished_Production_Measurement_Unit" FromRole="Measurement_Unit" ToRole="Finished_Production" />
+          <NavigationProperty Name="Stock" Relationship="Self.FK_Stock_Measurement_Unit" FromRole="Measurement_Unit" ToRole="Stock" />
+        </EntityType>
+        <EntityType Name="Ranks">
+          <Key>
+            <PropertyRef Name="ID_Rank" />
+          </Key>
+          <Property Name="ID_Rank" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Rank_name" Type="String" MaxLength="25" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Employers" Relationship="Self.FK_Employers_Ranks" FromRole="Ranks" ToRole="Employers" />
+        </EntityType>
+        <EntityType Name="Sales_of_Prod">
+          <Key>
+            <PropertyRef Name="ID_SalesProd" />
+          </Key>
+          <Property Name="ID_SalesProd" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_Production" Type="Int32" Nullable="false" />
+          <Property Name="Total_Amount" Type="Double" Nullable="false" />
+          <Property Name="Sum" Type="Double" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FK_Employer" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Employers" Relationship="Self.FK_Sales_of_Prod_Employers" FromRole="Sales_of_Prod" ToRole="Employers" />
+          <NavigationProperty Name="Finished_Production" Relationship="Self.FK_Sales_of_Prod_Finished_Production" FromRole="Sales_of_Prod" ToRole="Finished_Production" />
+        </EntityType>
+        <EntityType Name="Stock">
+          <Key>
+            <PropertyRef Name="ID_Stock" />
+          </Key>
+          <Property Name="ID_Stock" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name_of_Stock" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="FK_Measurement_Unit" Type="Byte" Nullable="false" />
+          <Property Name="Sum" Type="Double" Nullable="false" />
+          <Property Name="Total_Amount" Type="Double" Nullable="false" />
+          <NavigationProperty Name="BuyStock" Relationship="Self.FK_BuyStock_Stock" FromRole="Stock" ToRole="BuyStock" />
+          <NavigationProperty Name="Ingredients" Relationship="Self.FK_Ingredients_Stock" FromRole="Stock" ToRole="Ingredients" />
+          <NavigationProperty Name="Measurement_Unit" Relationship="Self.FK_Stock_Measurement_Unit" FromRole="Stock" ToRole="Measurement_Unit" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_BuyStock_Employers">
+          <End Role="Employers" Type="Self.Employers" Multiplicity="1" />
+          <End Role="BuyStock" Type="Self.BuyStock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employers">
+              <PropertyRef Name="ID_Employers" />
+            </Principal>
+            <Dependent Role="BuyStock">
+              <PropertyRef Name="FK_Employer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BuyStock_Stock">
+          <End Role="Stock" Type="Self.Stock" Multiplicity="1" />
+          <End Role="BuyStock" Type="Self.BuyStock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stock">
+              <PropertyRef Name="ID_Stock" />
+            </Principal>
+            <Dependent Role="BuyStock">
+              <PropertyRef Name="FK_Stock" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employers_Ranks">
+          <End Role="Ranks" Type="Self.Ranks" Multiplicity="1" />
+          <End Role="Employers" Type="Self.Employers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ranks">
+              <PropertyRef Name="ID_Rank" />
+            </Principal>
+            <Dependent Role="Employers">
+              <PropertyRef Name="FK_Rank" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Manufacture_Employers">
+          <End Role="Employers" Type="Self.Employers" Multiplicity="1" />
+          <End Role="Manufacture" Type="Self.Manufacture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employers">
+              <PropertyRef Name="ID_Employers" />
+            </Principal>
+            <Dependent Role="Manufacture">
+              <PropertyRef Name="FK_Employer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sales_of_Prod_Employers">
+          <End Role="Employers" Type="Self.Employers" Multiplicity="1" />
+          <End Role="Sales_of_Prod" Type="Self.Sales_of_Prod" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employers">
+              <PropertyRef Name="ID_Employers" />
+            </Principal>
+            <Dependent Role="Sales_of_Prod">
+              <PropertyRef Name="FK_Employer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Finished_Production_Measurement_Unit">
+          <End Role="Measurement_Unit" Type="Self.Measurement_Unit" Multiplicity="1" />
+          <End Role="Finished_Production" Type="Self.Finished_Production" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Measurement_Unit">
+              <PropertyRef Name="ID_MerUn" />
+            </Principal>
+            <Dependent Role="Finished_Production">
+              <PropertyRef Name="FK_Measurement_Unit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ingredients_Finished_Production">
+          <End Role="Finished_Production" Type="Self.Finished_Production" Multiplicity="1" />
+          <End Role="Ingredients" Type="Self.Ingredients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Finished_Production">
+              <PropertyRef Name="ID_FinPr" />
+            </Principal>
+            <Dependent Role="Ingredients">
+              <PropertyRef Name="FK_Production" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Manufacture_Finished_Production">
+          <End Role="Finished_Production" Type="Self.Finished_Production" Multiplicity="1" />
+          <End Role="Manufacture" Type="Self.Manufacture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Finished_Production">
+              <PropertyRef Name="ID_FinPr" />
+            </Principal>
+            <Dependent Role="Manufacture">
+              <PropertyRef Name="FK_Production" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sales_of_Prod_Finished_Production">
+          <End Role="Finished_Production" Type="Self.Finished_Production" Multiplicity="1" />
+          <End Role="Sales_of_Prod" Type="Self.Sales_of_Prod" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Finished_Production">
+              <PropertyRef Name="ID_FinPr" />
+            </Principal>
+            <Dependent Role="Sales_of_Prod">
+              <PropertyRef Name="FK_Production" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ingredients_Stock">
+          <End Role="Stock" Type="Self.Stock" Multiplicity="1" />
+          <End Role="Ingredients" Type="Self.Ingredients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stock">
+              <PropertyRef Name="ID_Stock" />
+            </Principal>
+            <Dependent Role="Ingredients">
+              <PropertyRef Name="FK_Stock" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stock_Measurement_Unit">
+          <End Role="Measurement_Unit" Type="Self.Measurement_Unit" Multiplicity="1" />
+          <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Measurement_Unit">
+              <PropertyRef Name="ID_MerUn" />
+            </Principal>
+            <Dependent Role="Stock">
+              <PropertyRef Name="FK_Measurement_Unit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SRSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="Budjet" EntityType="Self.Budjet" />
+          <EntitySet Name="BuyStock" EntityType="Self.BuyStock" />
+          <EntitySet Name="Employers" EntityType="Self.Employers" />
+          <EntitySet Name="Finished_Production" EntityType="Self.Finished_Production" />
+          <EntitySet Name="Ingredients" EntityType="Self.Ingredients" />
+          <EntitySet Name="Manufacture" EntityType="Self.Manufacture" />
+          <EntitySet Name="Measurement_Unit" EntityType="Self.Measurement_Unit" />
+          <EntitySet Name="Ranks" EntityType="Self.Ranks" />
+          <EntitySet Name="Sales_of_Prod" EntityType="Self.Sales_of_Prod" />
+          <EntitySet Name="Stock" EntityType="Self.Stock" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <AssociationSet Name="FK_BuyStock_Employers" Association="Self.FK_BuyStock_Employers">
+            <End Role="Employers" EntitySet="Employers" />
+            <End Role="BuyStock" EntitySet="BuyStock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BuyStock_Stock" Association="Self.FK_BuyStock_Stock">
+            <End Role="Stock" EntitySet="Stock" />
+            <End Role="BuyStock" EntitySet="BuyStock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employers_Ranks" Association="Self.FK_Employers_Ranks">
+            <End Role="Ranks" EntitySet="Ranks" />
+            <End Role="Employers" EntitySet="Employers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Manufacture_Employers" Association="Self.FK_Manufacture_Employers">
+            <End Role="Employers" EntitySet="Employers" />
+            <End Role="Manufacture" EntitySet="Manufacture" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sales_of_Prod_Employers" Association="Self.FK_Sales_of_Prod_Employers">
+            <End Role="Employers" EntitySet="Employers" />
+            <End Role="Sales_of_Prod" EntitySet="Sales_of_Prod" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Finished_Production_Measurement_Unit" Association="Self.FK_Finished_Production_Measurement_Unit">
+            <End Role="Measurement_Unit" EntitySet="Measurement_Unit" />
+            <End Role="Finished_Production" EntitySet="Finished_Production" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ingredients_Finished_Production" Association="Self.FK_Ingredients_Finished_Production">
+            <End Role="Finished_Production" EntitySet="Finished_Production" />
+            <End Role="Ingredients" EntitySet="Ingredients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Manufacture_Finished_Production" Association="Self.FK_Manufacture_Finished_Production">
+            <End Role="Finished_Production" EntitySet="Finished_Production" />
+            <End Role="Manufacture" EntitySet="Manufacture" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sales_of_Prod_Finished_Production" Association="Self.FK_Sales_of_Prod_Finished_Production">
+            <End Role="Finished_Production" EntitySet="Finished_Production" />
+            <End Role="Sales_of_Prod" EntitySet="Sales_of_Prod" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ingredients_Stock" Association="Self.FK_Ingredients_Stock">
+            <End Role="Stock" EntitySet="Stock" />
+            <End Role="Ingredients" EntitySet="Ingredients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stock_Measurement_Unit" Association="Self.FK_Stock_Measurement_Unit">
+            <End Role="Measurement_Unit" EntitySet="Measurement_Unit" />
+            <End Role="Stock" EntitySet="Stock" />
+          </AssociationSet>
+          <EntitySet Name="Payment_Logs" EntityType="SRSModel.Payment_Logs" />
+          <AssociationSet Name="FK_Payment_Logs_Employers" Association="SRSModel.FK_Payment_Logs_Employers">
+            <End Role="Employers" EntitySet="Employers" />
+            <End Role="Payment_Logs" EntitySet="Payment_Logs" />
+          </AssociationSet>
+          <EntitySet Name="Credit_Info" EntityType="SRSModel.Credit_Info" />
+          <EntitySet Name="Credit_Repayment" EntityType="SRSModel.Credit_Repayment" />
+          <AssociationSet Name="FK_Credit_Repayment_Credit_Info" Association="SRSModel.FK_Credit_Repayment_Credit_Info">
+            <End Role="Credit_Info" EntitySet="Credit_Info" />
+            <End Role="Credit_Repayment" EntitySet="Credit_Repayment" />
+          </AssociationSet>
+          <FunctionImport Name="SP_Select_Budjet" EntitySet="Budjet" ReturnType="Collection(SRSModel.Budjet)" />
+          <FunctionImport Name="SP_Update_Budjet">
+            <Parameter Name="ID_Budj" Mode="In" Type="Int32" />
+            <Parameter Name="Budj_Sum" Mode="In" Type="Double" />
+            <Parameter Name="Sale_Markup" Mode="In" Type="Double" />
+            <Parameter Name="Emp_Bonus" Mode="In" Type="Double" />
+          </FunctionImport>
+          <FunctionImport Name="SP_Delete_Employers">
+          <Parameter Name="ID_Employers" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_Delete_Ingredients">
+          <Parameter Name="ID_Ingredient" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_Delete_MeasurementUnit">
+          <Parameter Name="ID_MerUn" Mode="In" Type="Byte" />
+          </FunctionImport>
+          <FunctionImport Name="SP_Delete_Production">
+          <Parameter Name="ID_FinPr" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_Delete_Ranks">
+          <Parameter Name="ID_Rank" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_Delete_Stock">
+          <Parameter Name="ID_Stock" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_Insert_Employers">
+            <Parameter Name="Name_of_Emp" Mode="In" Type="String" />
+            <Parameter Name="FK_Rank" Mode="In" Type="Byte" />
+            <Parameter Name="Payment" Mode="In" Type="Double" />
+            <Parameter Name="Adress" Mode="In" Type="String" />
+            <Parameter Name="Phone_Number" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_Insert_Ingredients">
+            <Parameter Name="FK_Production" Mode="In" Type="Int32" />
+            <Parameter Name="FK_Stock" Mode="In" Type="Int32" />
+            <Parameter Name="Total_Amount" Mode="In" Type="Double" />
+          </FunctionImport>
+          <FunctionImport Name="SP_Insert_MeasurementUnit">
+          <Parameter Name="Name_MerUn" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_Insert_Production">
+            <Parameter Name="Name_FinPr" Mode="In" Type="String" />
+            <Parameter Name="FK_Measurement_Unit" Mode="In" Type="Byte" />
+            <Parameter Name="Sum" Mode="In" Type="Double" />
+            <Parameter Name="Total_Amount" Mode="In" Type="Double" />
+          </FunctionImport>
+          <FunctionImport Name="SP_Insert_Ranks">
+          <Parameter Name="Rank_name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_Insert_Stock">
+            <Parameter Name="Name_of_Stock" Mode="In" Type="String" />
+            <Parameter Name="FK_Measurement_Unit" Mode="In" Type="Byte" />
+            <Parameter Name="Sum" Mode="In" Type="Double" />
+            <Parameter Name="Total_Amount" Mode="In" Type="Double" />
+          </FunctionImport>
+          <FunctionImport Name="SP_Select_Employers" EntitySet="Employers" ReturnType="Collection(SRSModel.Employers)" />
+          <FunctionImport Name="SP_Select_Ingredients" EntitySet="Ingredients" ReturnType="Collection(SRSModel.Ingredients)" />
+          <FunctionImport Name="SP_Select_MeasurementUnit" EntitySet="Measurement_Unit" ReturnType="Collection(SRSModel.Measurement_Unit)" />
+          <FunctionImport Name="SP_Select_Production" EntitySet="Finished_Production" ReturnType="Collection(SRSModel.Finished_Production)" />
+          <FunctionImport Name="SP_Select_Ranks" EntitySet="Ranks" ReturnType="Collection(SRSModel.Ranks)" />
+          <FunctionImport Name="SP_Select_Stock" EntitySet="Stock" ReturnType="Collection(SRSModel.Stock)" />
+          <FunctionImport Name="SP_Update_Employers">
+            <Parameter Name="ID_Employers" Mode="In" Type="Int32" />
+            <Parameter Name="Name_of_Emp" Mode="In" Type="String" />
+            <Parameter Name="FK_Rank" Mode="In" Type="Byte" />
+            <Parameter Name="Payment" Mode="In" Type="Double" />
+            <Parameter Name="Adress" Mode="In" Type="String" />
+            <Parameter Name="Phone_Number" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_Update_Ingredients">
+            <Parameter Name="ID_Ingredient" Mode="In" Type="Int32" />
+            <Parameter Name="FK_Production" Mode="In" Type="Int32" />
+            <Parameter Name="FK_Stock" Mode="In" Type="Int32" />
+            <Parameter Name="Total_Amount" Mode="In" Type="Double" />
+          </FunctionImport>
+          <FunctionImport Name="SP_Update_MeasurementUnit">
+            <Parameter Name="ID_MerUn" Mode="In" Type="Byte" />
+            <Parameter Name="Name_MerUn" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_Update_Production">
+            <Parameter Name="ID_FinPr" Mode="In" Type="Int32" />
+            <Parameter Name="Name_FinPr" Mode="In" Type="String" />
+            <Parameter Name="FK_Measurement_Unit" Mode="In" Type="Byte" />
+            <Parameter Name="Sum" Mode="In" Type="Double" />
+            <Parameter Name="Total_Amount" Mode="In" Type="Double" />
+          </FunctionImport>
+          <FunctionImport Name="SP_Update_Ranks">
+            <Parameter Name="ID_Rank" Mode="In" Type="Int32" />
+            <Parameter Name="Rank_name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_Update_Stock">
+            <Parameter Name="ID_Stock" Mode="In" Type="Int32" />
+            <Parameter Name="Name_of_Stock" Mode="In" Type="String" />
+            <Parameter Name="FK_Measurement_Unit" Mode="In" Type="Byte" />
+            <Parameter Name="Sum" Mode="In" Type="Double" />
+            <Parameter Name="Total_Amount" Mode="In" Type="Double" />
+          </FunctionImport>
+          <FunctionImport Name="Financial_SP_Delete_CreditInfo">
+            <Parameter Name="ID_Credit" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Financial_SP_Delete_CreditPayment">
+            <Parameter Name="ID_Repayment" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Financial_SP_Delete_Payment">
+            <Parameter Name="ID_PaymentLog" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Financial_SP_Insert_CreditInfo">
+            <Parameter Name="Credit_Description" Mode="In" Type="String" />
+            <Parameter Name="Sum_of_Credit" Mode="In" Type="Double" />
+            <Parameter Name="Date_of_issue" Mode="In" Type="DateTime" />
+            <Parameter Name="Credit_Term" Mode="In" Type="Int16" />
+            <Parameter Name="Year_Percent" Mode="In" Type="Byte" />
+            <Parameter Name="Fine_Sum" Mode="In" Type="Double" />
+          </FunctionImport>
+          <FunctionImport Name="Financial_SP_Insert_CreditPayment">
+            <Parameter Name="FK_Credit" Mode="In" Type="Int32" />
+            <Parameter Name="Date_of_Repayment" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="Financial_SP_Insert_Payment">
+            <Parameter Name="FK_Employer" Mode="In" Type="Int32" />
+            <Parameter Name="Payment_Date" Mode="In" Type="DateTime" />
+            <Parameter Name="Additional_Pay" Mode="In" Type="Double" />
+          </FunctionImport>
+          <FunctionImport Name="Financial_SP_Select_CreditInfo" EntitySet="Credit_Info" ReturnType="Collection(SRSModel.Credit_Info)" />
+          <FunctionImport Name="Financial_SP_Select_CreditPayment" EntitySet="Credit_Repayment" ReturnType="Collection(SRSModel.Credit_Repayment)" />
+          <FunctionImport Name="Financial_SP_Select_Payment" EntitySet="Payment_Logs" ReturnType="Collection(SRSModel.Payment_Logs)" />
+          <FunctionImport Name="Financial_SP_Update_CreditInfo">
+            <Parameter Name="ID_Credit" Mode="In" Type="Int32" />
+            <Parameter Name="Credit_Description" Mode="In" Type="String" />
+            <Parameter Name="Sum_of_Credit" Mode="In" Type="Double" />
+            <Parameter Name="Date_of_issue" Mode="In" Type="DateTime" />
+            <Parameter Name="Credit_Term" Mode="In" Type="Int16" />
+            <Parameter Name="Year_Percent" Mode="In" Type="Byte" />
+            <Parameter Name="Fine_Sum" Mode="In" Type="Double" />
+            <Parameter Name="Sum_of_Month_Pay" Mode="In" Type="Double" />
+            <Parameter Name="Total_Sum_With_Year" Mode="In" Type="Double" />
+          </FunctionImport>
+          <FunctionImport Name="Financial_SP_Update_CreditPayment">
+            <Parameter Name="ID_Repayment" Mode="In" Type="Int32" />
+            <Parameter Name="FK_Credit" Mode="In" Type="Int32" />
+            <Parameter Name="Date_of_Repayment" Mode="In" Type="DateTime" />
+            <Parameter Name="Fair_Sum" Mode="In" Type="Double" />
+            <Parameter Name="Sum_of_Repayment" Mode="In" Type="Double" />
+          </FunctionImport>
+          <FunctionImport Name="Financial_SP_Update_Payment">
+            <Parameter Name="ID_PaymentLog" Mode="In" Type="Int32" />
+            <Parameter Name="FK_Employer" Mode="In" Type="Int32" />
+            <Parameter Name="Amount_of_work" Mode="In" Type="Int32" />
+            <Parameter Name="Sum_of_Bonus" Mode="In" Type="Double" />
+            <Parameter Name="Salary" Mode="In" Type="Double" />
+            <Parameter Name="Total_Payment" Mode="In" Type="Double" />
+            <Parameter Name="BuyStock_Amount" Mode="In" Type="Int32" />
+            <Parameter Name="Manufacture_Amount" Mode="In" Type="Int32" />
+            <Parameter Name="Sales_Amount" Mode="In" Type="Int32" />
+            <Parameter Name="Payment_Date" Mode="In" Type="DateTime" />
+            <Parameter Name="Additional_Pay" Mode="In" Type="Double" />
+          </FunctionImport>
+          <FunctionImport Name="Production_SP_Delete_Buystocks">
+            <Parameter Name="ID_BuyStock" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Production_SP_Delete_Manufacture">
+            <Parameter Name="ID_Manufacture" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Production_SP_Delete_Sales_Of_Prod">
+            <Parameter Name="ID_SalesProd" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Production_SP_Insert_Buystocks">
+            <Parameter Name="FK_Stock" Mode="In" Type="Int32" />
+            <Parameter Name="Total_Amount" Mode="In" Type="Double" />
+            <Parameter Name="Sum" Mode="In" Type="Double" />
+            <Parameter Name="Date" Mode="In" Type="DateTime" />
+            <Parameter Name="FK_Employer" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Production_SP_Insert_Manufacture">
+            <Parameter Name="FK_Production" Mode="In" Type="Int32" />
+            <Parameter Name="Total_Amount" Mode="In" Type="Double" />
+            <Parameter Name="Date" Mode="In" Type="DateTime" />
+            <Parameter Name="FK_Employer" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Production_SP_Insert_Sales_Of_Prod">
+            <Parameter Name="FK_Production" Mode="In" Type="Int32" />
+            <Parameter Name="Total_Amount" Mode="In" Type="Double" />
+            <Parameter Name="Date" Mode="In" Type="DateTime" />
+            <Parameter Name="FK_Employer" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Production_SP_Select_Buystocks" EntitySet="BuyStock" ReturnType="Collection(SRSModel.BuyStock)" />
+          <FunctionImport Name="Production_SP_Select_Manufacture" EntitySet="Manufacture" ReturnType="Collection(SRSModel.Manufacture)" />
+          <FunctionImport Name="Production_SP_Select_Sales_Of_Prod" EntitySet="Sales_of_Prod" ReturnType="Collection(SRSModel.Sales_of_Prod)" />
+          <FunctionImport Name="Production_SP_Update_Buystocks">
+            <Parameter Name="ID_BuyStock" Mode="In" Type="Int32" />
+            <Parameter Name="FK_Stock" Mode="In" Type="Int32" />
+            <Parameter Name="Total_Amount" Mode="In" Type="Double" />
+            <Parameter Name="Sum" Mode="In" Type="Double" />
+            <Parameter Name="Date" Mode="In" Type="DateTime" />
+            <Parameter Name="FK_Employer" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Production_SP_Update_Manufacture">
+            <Parameter Name="ID_Manufacture" Mode="In" Type="Int32" />
+            <Parameter Name="FK_Production" Mode="In" Type="Int32" />
+            <Parameter Name="Total_Amount" Mode="In" Type="Double" />
+            <Parameter Name="Date" Mode="In" Type="DateTime" />
+            <Parameter Name="FK_Employer" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Production_SP_Update_Sales_Of_Prod">
+            <Parameter Name="ID_SalesProd" Mode="In" Type="Int32" />
+            <Parameter Name="FK_Production" Mode="In" Type="Int32" />
+            <Parameter Name="Total_Amount" Mode="In" Type="Double" />
+            <Parameter Name="Date" Mode="In" Type="DateTime" />
+            <Parameter Name="FK_Employer" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="Payment_Logs">
+          <Key>
+            <PropertyRef Name="ID_PaymentLog" />
+          </Key>
+          <Property Name="ID_PaymentLog" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_Employer" Type="Int32" Nullable="false" />
+          <Property Name="Amount_of_work" Type="Int32" />
+          <Property Name="Sum_of_Bonus" Type="Double" />
+          <Property Name="Salary" Type="Double" />
+          <Property Name="Total_Payment" Type="Double" />
+          <Property Name="BuyStock_Amount" Type="Int32" />
+          <Property Name="Manufacture_Amount" Type="Int32" />
+          <Property Name="Sales_Amount" Type="Int32" />
+          <NavigationProperty Name="Employers" Relationship="SRSModel.FK_Payment_Logs_Employers" FromRole="Payment_Logs" ToRole="Employers" />
+          <Property Name="PaymentDate" Type="DateTime" Precision="0" />
+          <Property Name="Additional_Pay" Type="Double" />
+        </EntityType>
+        <Association Name="FK_Payment_Logs_Employers">
+          <End Type="SRSModel.Employers" Role="Employers" Multiplicity="1" />
+          <End Type="SRSModel.Payment_Logs" Role="Payment_Logs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employers">
+              <PropertyRef Name="ID_Employers" />
+            </Principal>
+            <Dependent Role="Payment_Logs">
+              <PropertyRef Name="FK_Employer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Credit_Info">
+          <Key>
+            <PropertyRef Name="ID_Credit" />
+          </Key>
+          <Property Name="ID_Credit" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Credit_Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Sum_of_Credit" Type="Double" Nullable="false" />
+          <Property Name="Date_of_issue" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Credit_Term" Type="Int16" Nullable="false" />
+          <Property Name="Year_Percent" Type="Byte" Nullable="false" />
+          <Property Name="Fine_Sum" Type="Double" Nullable="false" />
+          <Property Name="Sum_of_Month_Pay" Type="Double" />
+          <Property Name="Total_Sum_With_Year" Type="Double" />
+          <NavigationProperty Name="Credit_Repayment" Relationship="SRSModel.FK_Credit_Repayment_Credit_Info" FromRole="Credit_Info" ToRole="Credit_Repayment" />
+        </EntityType>
+        <EntityType Name="Credit_Repayment">
+          <Key>
+            <PropertyRef Name="ID_Repayment" />
+          </Key>
+          <Property Name="ID_Repayment" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_Credit" Type="Int32" Nullable="false" />
+          <Property Name="Date_of_Repayment" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Fair_Sum" Type="Double" />
+          <Property Name="Sum_of_Repayment" Type="Double" />
+          <NavigationProperty Name="Credit_Info" Relationship="SRSModel.FK_Credit_Repayment_Credit_Info" FromRole="Credit_Repayment" ToRole="Credit_Info" />
+        </EntityType>
+        <Association Name="FK_Credit_Repayment_Credit_Info">
+          <End Type="SRSModel.Credit_Info" Role="Credit_Info" Multiplicity="1" />
+          <End Type="SRSModel.Credit_Repayment" Role="Credit_Repayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Credit_Info">
+              <PropertyRef Name="ID_Credit" />
+            </Principal>
+            <Dependent Role="Credit_Repayment">
+              <PropertyRef Name="FK_Credit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="SP_Select_Budjet_Result">
+          <Property Type="Int32" Name="ID_Budget" Nullable="false" />
+          <Property Type="Double" Name="Budget_Sum" Nullable="false" />
+          <Property Type="Double" Name="Sale_Markup" Nullable="true" />
+          <Property Type="Double" Name="Emp_Sale_Bonus" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_Select_Employers_Result">
+          <Property Type="Int32" Name="ID_Employers" Nullable="false" />
+          <Property Type="String" Name="Name_of_Emp" Nullable="false" MaxLength="100" />
+          <Property Type="Byte" Name="FK_Rank" Nullable="false" />
+          <Property Type="Double" Name="Payment" Nullable="false" />
+          <Property Type="String" Name="Adress" Nullable="true" MaxLength="75" />
+          <Property Type="String" Name="Phone_Number" Nullable="true" MaxLength="13" />
+        </ComplexType>
+        <ComplexType Name="SP_Select_Ingredients_Result">
+          <Property Type="Int32" Name="ID_Ingredient" Nullable="false" />
+          <Property Type="Int32" Name="FK_Production" Nullable="false" />
+          <Property Type="Int32" Name="FK_Stock" Nullable="false" />
+          <Property Type="Double" Name="Total_Amount" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SP_Select_MeasurementUnit_Result">
+          <Property Type="Byte" Name="ID_MerUn" Nullable="false" />
+          <Property Type="String" Name="Name_MerUn" Nullable="false" MaxLength="35" />
+        </ComplexType>
+        <ComplexType Name="SP_Select_Production_Result">
+          <Property Type="Int32" Name="ID_FinPr" Nullable="false" />
+          <Property Type="String" Name="Name_FinPr" Nullable="false" MaxLength="50" />
+          <Property Type="Byte" Name="FK_Measurement_Unit" Nullable="false" />
+          <Property Type="Double" Name="Sum" Nullable="false" />
+          <Property Type="Double" Name="Total_Amount" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SP_Select_Ranks_Result">
+          <Property Type="Byte" Name="ID_Rank" Nullable="false" />
+          <Property Type="String" Name="Rank_name" Nullable="false" MaxLength="25" />
+        </ComplexType>
+        <ComplexType Name="SP_Select_Stock_Result">
+          <Property Type="Int32" Name="ID_Stock" Nullable="false" />
+          <Property Type="String" Name="Name_of_Stock" Nullable="false" MaxLength="50" />
+          <Property Type="Byte" Name="FK_Measurement_Unit" Nullable="false" />
+          <Property Type="Double" Name="Sum" Nullable="false" />
+          <Property Type="Double" Name="Total_Amount" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="Financial_SP_Select_CreditInfo_Result">
+          <Property Type="Int32" Name="ID_Credit" Nullable="false" />
+          <Property Type="String" Name="Credit_Description" Nullable="false" />
+          <Property Type="Double" Name="Sum_of_Credit" Nullable="false" />
+          <Property Type="DateTime" Name="Date_of_issue" Nullable="false" />
+          <Property Type="Int16" Name="Credit_Term" Nullable="false" />
+          <Property Type="Byte" Name="Year_Percent" Nullable="false" />
+          <Property Type="Double" Name="Fine_Sum" Nullable="false" />
+          <Property Type="Double" Name="Sum_of_Month_Pay" Nullable="true" />
+          <Property Type="Double" Name="Total_Sum_With_Year" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Financial_SP_Select_CreditPayment_Result">
+          <Property Type="Int32" Name="ID_Repayment" Nullable="false" />
+          <Property Type="Int32" Name="FK_Credit" Nullable="false" />
+          <Property Type="DateTime" Name="Date_of_Repayment" Nullable="false" />
+          <Property Type="Double" Name="Fair_Sum" Nullable="true" />
+          <Property Type="Double" Name="Sum_of_Repayment" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Financial_SP_Select_Payment_Result">
+          <Property Type="Int32" Name="ID_PaymentLog" Nullable="false" />
+          <Property Type="Int32" Name="FK_Employer" Nullable="false" />
+          <Property Type="Int32" Name="Amount_of_work" Nullable="true" />
+          <Property Type="Double" Name="Sum_of_Bonus" Nullable="true" />
+          <Property Type="Double" Name="Salary" Nullable="true" />
+          <Property Type="Double" Name="Total_Payment" Nullable="true" />
+          <Property Type="Int32" Name="BuyStock_Amount" Nullable="true" />
+          <Property Type="Int32" Name="Manufacture_Amount" Nullable="true" />
+          <Property Type="Int32" Name="Sales_Amount" Nullable="true" />
+          <Property Type="DateTime" Name="PaymentDate" Nullable="true" />
+          <Property Type="Double" Name="Additional_Pay" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Production_SP_Select_Buystocks_Result">
+          <Property Type="Int32" Name="ID_BuyStock" Nullable="false" />
+          <Property Type="Int32" Name="FK_Stock" Nullable="false" />
+          <Property Type="Double" Name="Total_Amount" Nullable="false" />
+          <Property Type="Double" Name="Sum" Nullable="false" />
+          <Property Type="DateTime" Name="Date" Nullable="false" />
+          <Property Type="Int32" Name="FK_Employer" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="Production_SP_Select_Manufacture_Result">
+          <Property Type="Int32" Name="ID_Manufacture" Nullable="false" />
+          <Property Type="Int32" Name="FK_Production" Nullable="false" />
+          <Property Type="Double" Name="Total_Amount" Nullable="false" />
+          <Property Type="DateTime" Name="Date" Nullable="false" />
+          <Property Type="Int32" Name="FK_Employer" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="Production_SP_Select_Sales_Of_Prod_Result">
+          <Property Type="Int32" Name="ID_SalesProd" Nullable="false" />
+          <Property Type="Int32" Name="FK_Production" Nullable="false" />
+          <Property Type="Double" Name="Total_Amount" Nullable="false" />
+          <Property Type="Double" Name="Sum" Nullable="true" />
+          <Property Type="DateTime" Name="Date" Nullable="false" Precision="16" />
+          <Property Type="Int32" Name="FK_Employer" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище SRSModelContainer" CdmEntityContainer="SRSEntities">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="SRSModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Budjet">
+            <EntityTypeMapping TypeName="SRSModel.Budjet">
+              <MappingFragment StoreEntitySet="Budjet">
+                <ScalarProperty Name="Emp_Sale_Bonus" ColumnName="Emp_Sale_Bonus" />
+                <ScalarProperty Name="Sale_Markup" ColumnName="Sale_Markup" />
+                <ScalarProperty Name="ID_Budget" ColumnName="ID_Budget" />
+                <ScalarProperty Name="Budget_Sum" ColumnName="Budget_Sum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="SRSModel.Budjet">
+              <ModificationFunctionMapping>
+                <UpdateFunction FunctionName="Хранилище SRSModel.SP_Update_Budjet">
+                  <ScalarProperty Name="Emp_Sale_Bonus" ParameterName="Emp_Bonus" Version="Current" />
+                  <ScalarProperty Name="Budget_Sum" ParameterName="Budj_Sum" Version="Current" />
+                  <ScalarProperty Name="ID_Budget" ParameterName="ID_Budj" Version="Current" />
+                  <ScalarProperty Name="Sale_Markup" ParameterName="Sale_Markup" Version="Current" />
+                </UpdateFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BuyStock">
+            <EntityTypeMapping TypeName="SRSModel.BuyStock">
+              <MappingFragment StoreEntitySet="BuyStock">
+                <ScalarProperty Name="ID_BuyStock" ColumnName="ID_BuyStock" />
+                <ScalarProperty Name="FK_Stock" ColumnName="FK_Stock" />
+                <ScalarProperty Name="Total_Amount" ColumnName="Total_Amount" />
+                <ScalarProperty Name="Sum" ColumnName="Sum" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="FK_Employer" ColumnName="FK_Employer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="SRSModel.BuyStock">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="Хранилище SRSModel.Production_SP_Insert_Buystocks">
+                  <ScalarProperty Name="FK_Employer" ParameterName="FK_Employer" />
+                  <ScalarProperty Name="Date" ParameterName="Date" />
+                  <ScalarProperty Name="Sum" ParameterName="Sum" />
+                  <ScalarProperty Name="Total_Amount" ParameterName="Total_Amount" />
+                  <ScalarProperty Name="FK_Stock" ParameterName="FK_Stock" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="Хранилище SRSModel.Production_SP_Update_Buystocks">
+                  <ScalarProperty Name="FK_Employer" ParameterName="FK_Employer" Version="Current" />
+                  <ScalarProperty Name="Date" ParameterName="Date" Version="Current" />
+                  <ScalarProperty Name="Sum" ParameterName="Sum" Version="Current" />
+                  <ScalarProperty Name="Total_Amount" ParameterName="Total_Amount" Version="Current" />
+                  <ScalarProperty Name="FK_Stock" ParameterName="FK_Stock" Version="Current" />
+                  <ScalarProperty Name="ID_BuyStock" ParameterName="ID_BuyStock" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="Хранилище SRSModel.Production_SP_Delete_Buystocks">
+                  <ScalarProperty Name="ID_BuyStock" ParameterName="ID_BuyStock" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employers">
+            <EntityTypeMapping TypeName="SRSModel.Employers">
+              <MappingFragment StoreEntitySet="Employers">
+                <ScalarProperty Name="ID_Employers" ColumnName="ID_Employers" />
+                <ScalarProperty Name="Name_of_Emp" ColumnName="Name_of_Emp" />
+                <ScalarProperty Name="FK_Rank" ColumnName="FK_Rank" />
+                <ScalarProperty Name="Payment" ColumnName="Payment" />
+                <ScalarProperty Name="Adress" ColumnName="Adress" />
+                <ScalarProperty Name="Phone_Number" ColumnName="Phone_Number" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="SRSModel.Employers">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="Хранилище SRSModel.SP_Insert_Employers">
+                  <ScalarProperty Name="Phone_Number" ParameterName="Phone_Number" />
+                  <ScalarProperty Name="Adress" ParameterName="Adress" />
+                  <ScalarProperty Name="Payment" ParameterName="Payment" />
+                  <ScalarProperty Name="FK_Rank" ParameterName="FK_Rank" />
+                  <ScalarProperty Name="Name_of_Emp" ParameterName="Name_of_Emp" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="Хранилище SRSModel.SP_Update_Employers">
+                  <ScalarProperty Name="Phone_Number" ParameterName="Phone_Number" Version="Current" />
+                  <ScalarProperty Name="Adress" ParameterName="Adress" Version="Current" />
+                  <ScalarProperty Name="Payment" ParameterName="Payment" Version="Current" />
+                  <ScalarProperty Name="FK_Rank" ParameterName="FK_Rank" Version="Current" />
+                  <ScalarProperty Name="Name_of_Emp" ParameterName="Name_of_Emp" Version="Current" />
+                  <ScalarProperty Name="ID_Employers" ParameterName="ID_Employers" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="Хранилище SRSModel.SP_Delete_Employers">
+                  <ScalarProperty Name="ID_Employers" ParameterName="ID_Employers" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Finished_Production">
+            <EntityTypeMapping TypeName="SRSModel.Finished_Production">
+              <MappingFragment StoreEntitySet="Finished_Production">
+                <ScalarProperty Name="ID_FinPr" ColumnName="ID_FinPr" />
+                <ScalarProperty Name="Name_FinPr" ColumnName="Name_FinPr" />
+                <ScalarProperty Name="FK_Measurement_Unit" ColumnName="FK_Measurement_Unit" />
+                <ScalarProperty Name="Sum" ColumnName="Sum" />
+                <ScalarProperty Name="Total_Amount" ColumnName="Total_Amount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="SRSModel.Finished_Production">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="Хранилище SRSModel.SP_Insert_Production">
+                  <ScalarProperty Name="Total_Amount" ParameterName="Total_Amount" />
+                  <ScalarProperty Name="Sum" ParameterName="Sum" />
+                  <ScalarProperty Name="FK_Measurement_Unit" ParameterName="FK_Measurement_Unit" />
+                  <ScalarProperty Name="Name_FinPr" ParameterName="Name_FinPr" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="Хранилище SRSModel.SP_Update_Production">
+                  <ScalarProperty Name="Total_Amount" ParameterName="Total_Amount" Version="Current" />
+                  <ScalarProperty Name="Sum" ParameterName="Sum" Version="Current" />
+                  <ScalarProperty Name="FK_Measurement_Unit" ParameterName="FK_Measurement_Unit" Version="Current" />
+                  <ScalarProperty Name="Name_FinPr" ParameterName="Name_FinPr" Version="Current" />
+                  <ScalarProperty Name="ID_FinPr" ParameterName="ID_FinPr" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="Хранилище SRSModel.SP_Delete_Production">
+                  <ScalarProperty Name="ID_FinPr" ParameterName="ID_FinPr" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ingredients">
+            <EntityTypeMapping TypeName="SRSModel.Ingredients">
+              <MappingFragment StoreEntitySet="Ingredients">
+                <ScalarProperty Name="ID_Ingredient" ColumnName="ID_Ingredient" />
+                <ScalarProperty Name="FK_Production" ColumnName="FK_Production" />
+                <ScalarProperty Name="FK_Stock" ColumnName="FK_Stock" />
+                <ScalarProperty Name="Total_Amount" ColumnName="Total_Amount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="SRSModel.Ingredients">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="Хранилище SRSModel.SP_Insert_Ingredients">
+                  <ScalarProperty Name="Total_Amount" ParameterName="Total_Amount" />
+                  <ScalarProperty Name="FK_Stock" ParameterName="FK_Stock" />
+                  <ScalarProperty Name="FK_Production" ParameterName="FK_Production" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="Хранилище SRSModel.SP_Update_Ingredients">
+                  <ScalarProperty Name="Total_Amount" ParameterName="Total_Amount" Version="Current" />
+                  <ScalarProperty Name="FK_Stock" ParameterName="FK_Stock" Version="Current" />
+                  <ScalarProperty Name="FK_Production" ParameterName="FK_Production" Version="Current" />
+                  <ScalarProperty Name="ID_Ingredient" ParameterName="ID_Ingredient" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="Хранилище SRSModel.SP_Delete_Ingredients">
+                  <ScalarProperty Name="ID_Ingredient" ParameterName="ID_Ingredient" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Manufacture">
+            <EntityTypeMapping TypeName="SRSModel.Manufacture">
+              <MappingFragment StoreEntitySet="Manufacture">
+                <ScalarProperty Name="ID_Manufacture" ColumnName="ID_Manufacture" />
+                <ScalarProperty Name="FK_Production" ColumnName="FK_Production" />
+                <ScalarProperty Name="Total_Amount" ColumnName="Total_Amount" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="FK_Employer" ColumnName="FK_Employer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="SRSModel.Manufacture">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="Хранилище SRSModel.Production_SP_Insert_Manufacture">
+                  <ScalarProperty Name="FK_Employer" ParameterName="FK_Employer" />
+                  <ScalarProperty Name="Date" ParameterName="Date" />
+                  <ScalarProperty Name="Total_Amount" ParameterName="Total_Amount" />
+                  <ScalarProperty Name="FK_Production" ParameterName="FK_Production" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="Хранилище SRSModel.Production_SP_Update_Manufacture">
+                  <ScalarProperty Name="FK_Employer" ParameterName="FK_Employer" Version="Current" />
+                  <ScalarProperty Name="Date" ParameterName="Date" Version="Current" />
+                  <ScalarProperty Name="Total_Amount" ParameterName="Total_Amount" Version="Current" />
+                  <ScalarProperty Name="FK_Production" ParameterName="FK_Production" Version="Current" />
+                  <ScalarProperty Name="ID_Manufacture" ParameterName="ID_Manufacture" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="Хранилище SRSModel.Production_SP_Delete_Manufacture">
+                  <ScalarProperty Name="ID_Manufacture" ParameterName="ID_Manufacture" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Measurement_Unit">
+            <EntityTypeMapping TypeName="SRSModel.Measurement_Unit">
+              <MappingFragment StoreEntitySet="Measurement_Unit">
+                <ScalarProperty Name="ID_MerUn" ColumnName="ID_MerUn" />
+                <ScalarProperty Name="Name_MerUn" ColumnName="Name_MerUn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="SRSModel.Measurement_Unit">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="Хранилище SRSModel.SP_Insert_MeasurementUnit">
+                  <ScalarProperty Name="Name_MerUn" ParameterName="Name_MerUn" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="Хранилище SRSModel.SP_Update_MeasurementUnit">
+                  <ScalarProperty Name="Name_MerUn" ParameterName="Name_MerUn" Version="Current" />
+                  <ScalarProperty Name="ID_MerUn" ParameterName="ID_MerUn" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="Хранилище SRSModel.SP_Delete_MeasurementUnit">
+                  <ScalarProperty Name="ID_MerUn" ParameterName="ID_MerUn" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ranks">
+            <EntityTypeMapping TypeName="SRSModel.Ranks">
+              <MappingFragment StoreEntitySet="Ranks">
+                <ScalarProperty Name="ID_Rank" ColumnName="ID_Rank" />
+                <ScalarProperty Name="Rank_name" ColumnName="Rank_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="SRSModel.Ranks">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="Хранилище SRSModel.SP_Insert_Ranks">
+                  <ScalarProperty Name="Rank_name" ParameterName="Rank_name" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="Хранилище SRSModel.SP_Update_Ranks">
+                  <ScalarProperty Name="Rank_name" ParameterName="Rank_name" Version="Current" />
+                  <ScalarProperty Name="ID_Rank" ParameterName="ID_Rank" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="Хранилище SRSModel.SP_Delete_Ranks">
+                  <ScalarProperty Name="ID_Rank" ParameterName="ID_Rank" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sales_of_Prod">
+            <EntityTypeMapping TypeName="SRSModel.Sales_of_Prod">
+              <MappingFragment StoreEntitySet="Sales_of_Prod">
+                <ScalarProperty Name="ID_SalesProd" ColumnName="ID_SalesProd" />
+                <ScalarProperty Name="FK_Production" ColumnName="FK_Production" />
+                <ScalarProperty Name="Total_Amount" ColumnName="Total_Amount" />
+                <ScalarProperty Name="Sum" ColumnName="Sum" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="FK_Employer" ColumnName="FK_Employer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="SRSModel.Sales_of_Prod">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="Хранилище SRSModel.Production_SP_Insert_Sales_Of_Prod">
+                  <ScalarProperty Name="FK_Employer" ParameterName="FK_Employer" />
+                  <ScalarProperty Name="Date" ParameterName="Date" />
+                  <ScalarProperty Name="Total_Amount" ParameterName="Total_Amount" />
+                  <ScalarProperty Name="FK_Production" ParameterName="FK_Production" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="Хранилище SRSModel.Production_SP_Update_Sales_Of_Prod">
+                  <ScalarProperty Name="FK_Employer" ParameterName="FK_Employer" Version="Current" />
+                  <ScalarProperty Name="Date" ParameterName="Date" Version="Current" />
+                  <ScalarProperty Name="Total_Amount" ParameterName="Total_Amount" Version="Current" />
+                  <ScalarProperty Name="FK_Production" ParameterName="FK_Production" Version="Current" />
+                  <ScalarProperty Name="ID_SalesProd" ParameterName="ID_SalesProd" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="Хранилище SRSModel.Production_SP_Delete_Sales_Of_Prod">
+                  <ScalarProperty Name="ID_SalesProd" ParameterName="ID_SalesProd" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stock">
+            <EntityTypeMapping TypeName="SRSModel.Stock">
+              <MappingFragment StoreEntitySet="Stock">
+                <ScalarProperty Name="ID_Stock" ColumnName="ID_Stock" />
+                <ScalarProperty Name="Name_of_Stock" ColumnName="Name_of_Stock" />
+                <ScalarProperty Name="FK_Measurement_Unit" ColumnName="FK_Measurement_Unit" />
+                <ScalarProperty Name="Sum" ColumnName="Sum" />
+                <ScalarProperty Name="Total_Amount" ColumnName="Total_Amount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="SRSModel.Stock">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="Хранилище SRSModel.SP_Insert_Stock">
+                  <ScalarProperty Name="Total_Amount" ParameterName="Total_Amount" />
+                  <ScalarProperty Name="Sum" ParameterName="Sum" />
+                  <ScalarProperty Name="FK_Measurement_Unit" ParameterName="FK_Measurement_Unit" />
+                  <ScalarProperty Name="Name_of_Stock" ParameterName="Name_of_Stock" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="Хранилище SRSModel.SP_Update_Stock">
+                  <ScalarProperty Name="Total_Amount" ParameterName="Total_Amount" Version="Current" />
+                  <ScalarProperty Name="Sum" ParameterName="Sum" Version="Current" />
+                  <ScalarProperty Name="FK_Measurement_Unit" ParameterName="FK_Measurement_Unit" Version="Current" />
+                  <ScalarProperty Name="Name_of_Stock" ParameterName="Name_of_Stock" Version="Current" />
+                  <ScalarProperty Name="ID_Stock" ParameterName="ID_Stock" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="Хранилище SRSModel.SP_Delete_Stock">
+                  <ScalarProperty Name="ID_Stock" ParameterName="ID_Stock" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="SRSModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payment_Logs">
+            <EntityTypeMapping TypeName="SRSModel.Payment_Logs">
+              <MappingFragment StoreEntitySet="Payment_Logs">
+                <ScalarProperty Name="Additional_Pay" ColumnName="Additional_Pay" />
+                <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+                <ScalarProperty Name="Sales_Amount" ColumnName="Sales_Amount" />
+                <ScalarProperty Name="Manufacture_Amount" ColumnName="Manufacture_Amount" />
+                <ScalarProperty Name="BuyStock_Amount" ColumnName="BuyStock_Amount" />
+                <ScalarProperty Name="Total_Payment" ColumnName="Total_Payment" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="Sum_of_Bonus" ColumnName="Sum_of_Bonus" />
+                <ScalarProperty Name="Amount_of_work" ColumnName="Amount_of_work" />
+                <ScalarProperty Name="FK_Employer" ColumnName="FK_Employer" />
+                <ScalarProperty Name="ID_PaymentLog" ColumnName="ID_PaymentLog" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="SRSModel.Payment_Logs">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="Хранилище SRSModel.Financial_SP_Insert_Payment">
+                  <ScalarProperty Name="PaymentDate" ParameterName="Payment_Date" />
+                  <ScalarProperty Name="Additional_Pay" ParameterName="Additional_Pay" />
+                  <ScalarProperty Name="FK_Employer" ParameterName="FK_Employer" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="Хранилище SRSModel.Financial_SP_Update_Payment">
+                  <ScalarProperty Name="PaymentDate" ParameterName="Payment_Date" Version="Current" />
+                  <ScalarProperty Name="Additional_Pay" ParameterName="Additional_Pay" Version="Current" />
+                  <ScalarProperty Name="Sales_Amount" ParameterName="Sales_Amount" Version="Current" />
+                  <ScalarProperty Name="Manufacture_Amount" ParameterName="Manufacture_Amount" Version="Current" />
+                  <ScalarProperty Name="BuyStock_Amount" ParameterName="BuyStock_Amount" Version="Current" />
+                  <ScalarProperty Name="Total_Payment" ParameterName="Total_Payment" Version="Current" />
+                  <ScalarProperty Name="Salary" ParameterName="Salary" Version="Current" />
+                  <ScalarProperty Name="Sum_of_Bonus" ParameterName="Sum_of_Bonus" Version="Current" />
+                  <ScalarProperty Name="Amount_of_work" ParameterName="Amount_of_work" Version="Current" />
+                  <ScalarProperty Name="FK_Employer" ParameterName="FK_Employer" Version="Current" />
+                  <ScalarProperty Name="ID_PaymentLog" ParameterName="ID_PaymentLog" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="Хранилище SRSModel.Financial_SP_Delete_Payment">
+                  <ScalarProperty Name="ID_PaymentLog" ParameterName="ID_PaymentLog" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Credit_Info">
+            <EntityTypeMapping TypeName="SRSModel.Credit_Info">
+              <MappingFragment StoreEntitySet="Credit_Info">
+                <ScalarProperty Name="Total_Sum_With_Year" ColumnName="Total_Sum_With_Year" />
+                <ScalarProperty Name="Sum_of_Month_Pay" ColumnName="Sum_of_Month_Pay" />
+                <ScalarProperty Name="Fine_Sum" ColumnName="Fine_Sum" />
+                <ScalarProperty Name="Year_Percent" ColumnName="Year_Percent" />
+                <ScalarProperty Name="Credit_Term" ColumnName="Credit_Term" />
+                <ScalarProperty Name="Date_of_issue" ColumnName="Date_of_issue" />
+                <ScalarProperty Name="Sum_of_Credit" ColumnName="Sum_of_Credit" />
+                <ScalarProperty Name="Credit_Description" ColumnName="Credit_Description" />
+                <ScalarProperty Name="ID_Credit" ColumnName="ID_Credit" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="SRSModel.Credit_Info">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="Хранилище SRSModel.Financial_SP_Insert_CreditInfo">
+                  <ScalarProperty Name="Fine_Sum" ParameterName="Fine_Sum" />
+                  <ScalarProperty Name="Year_Percent" ParameterName="Year_Percent" />
+                  <ScalarProperty Name="Credit_Term" ParameterName="Credit_Term" />
+                  <ScalarProperty Name="Date_of_issue" ParameterName="Date_of_issue" />
+                  <ScalarProperty Name="Sum_of_Credit" ParameterName="Sum_of_Credit" />
+                  <ScalarProperty Name="Credit_Description" ParameterName="Credit_Description" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="Хранилище SRSModel.Financial_SP_Update_CreditInfo">
+                  <ScalarProperty Name="Total_Sum_With_Year" ParameterName="Total_Sum_With_Year" Version="Current" />
+                  <ScalarProperty Name="Sum_of_Month_Pay" ParameterName="Sum_of_Month_Pay" Version="Current" />
+                  <ScalarProperty Name="Fine_Sum" ParameterName="Fine_Sum" Version="Current" />
+                  <ScalarProperty Name="Year_Percent" ParameterName="Year_Percent" Version="Current" />
+                  <ScalarProperty Name="Credit_Term" ParameterName="Credit_Term" Version="Current" />
+                  <ScalarProperty Name="Date_of_issue" ParameterName="Date_of_issue" Version="Current" />
+                  <ScalarProperty Name="Sum_of_Credit" ParameterName="Sum_of_Credit" Version="Current" />
+                  <ScalarProperty Name="Credit_Description" ParameterName="Credit_Description" Version="Current" />
+                  <ScalarProperty Name="ID_Credit" ParameterName="ID_Credit" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="Хранилище SRSModel.Financial_SP_Delete_CreditInfo">
+                  <ScalarProperty Name="ID_Credit" ParameterName="ID_Credit" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Credit_Repayment">
+            <EntityTypeMapping TypeName="SRSModel.Credit_Repayment">
+              <MappingFragment StoreEntitySet="Credit_Repayment">
+                <ScalarProperty Name="Sum_of_Repayment" ColumnName="Sum_of_Repayment" />
+                <ScalarProperty Name="Fair_Sum" ColumnName="Fair_Sum" />
+                <ScalarProperty Name="Date_of_Repayment" ColumnName="Date_of_Repayment" />
+                <ScalarProperty Name="FK_Credit" ColumnName="FK_Credit" />
+                <ScalarProperty Name="ID_Repayment" ColumnName="ID_Repayment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="SRSModel.Credit_Repayment">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="Хранилище SRSModel.Financial_SP_Insert_CreditPayment">
+                  <ScalarProperty Name="Date_of_Repayment" ParameterName="Date_of_Repayment" />
+                  <ScalarProperty Name="FK_Credit" ParameterName="FK_Credit" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="Хранилище SRSModel.Financial_SP_Update_CreditPayment">
+                  <ScalarProperty Name="Sum_of_Repayment" ParameterName="Sum_of_Repayment" Version="Current" />
+                  <ScalarProperty Name="Fair_Sum" ParameterName="Fair_Sum" Version="Current" />
+                  <ScalarProperty Name="Date_of_Repayment" ParameterName="Date_of_Repayment" Version="Current" />
+                  <ScalarProperty Name="FK_Credit" ParameterName="FK_Credit" Version="Current" />
+                  <ScalarProperty Name="ID_Repayment" ParameterName="ID_Repayment" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="Хранилище SRSModel.Financial_SP_Delete_CreditPayment">
+                  <ScalarProperty Name="ID_Repayment" ParameterName="ID_Repayment" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_Select_Budjet" FunctionName="Хранилище SRSModel.SP_Select_Budjet">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_Update_Budjet" FunctionName="Хранилище SRSModel.SP_Update_Budjet" />
+          <FunctionImportMapping FunctionImportName="SP_Delete_Employers" FunctionName="Хранилище SRSModel.SP_Delete_Employers" />
+          <FunctionImportMapping FunctionImportName="SP_Delete_Ingredients" FunctionName="Хранилище SRSModel.SP_Delete_Ingredients" />
+          <FunctionImportMapping FunctionImportName="SP_Delete_MeasurementUnit" FunctionName="Хранилище SRSModel.SP_Delete_MeasurementUnit" />
+          <FunctionImportMapping FunctionImportName="SP_Delete_Production" FunctionName="Хранилище SRSModel.SP_Delete_Production" />
+          <FunctionImportMapping FunctionImportName="SP_Delete_Ranks" FunctionName="Хранилище SRSModel.SP_Delete_Ranks" />
+          <FunctionImportMapping FunctionImportName="SP_Delete_Stock" FunctionName="Хранилище SRSModel.SP_Delete_Stock" />
+          <FunctionImportMapping FunctionImportName="SP_Insert_Employers" FunctionName="Хранилище SRSModel.SP_Insert_Employers" />
+          <FunctionImportMapping FunctionImportName="SP_Insert_Ingredients" FunctionName="Хранилище SRSModel.SP_Insert_Ingredients" />
+          <FunctionImportMapping FunctionImportName="SP_Insert_MeasurementUnit" FunctionName="Хранилище SRSModel.SP_Insert_MeasurementUnit" />
+          <FunctionImportMapping FunctionImportName="SP_Insert_Production" FunctionName="Хранилище SRSModel.SP_Insert_Production" />
+          <FunctionImportMapping FunctionImportName="SP_Insert_Ranks" FunctionName="Хранилище SRSModel.SP_Insert_Ranks" />
+          <FunctionImportMapping FunctionImportName="SP_Insert_Stock" FunctionName="Хранилище SRSModel.SP_Insert_Stock" />
+          <FunctionImportMapping FunctionImportName="SP_Select_Employers" FunctionName="Хранилище SRSModel.SP_Select_Employers">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_Select_Ingredients" FunctionName="Хранилище SRSModel.SP_Select_Ingredients">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_Select_MeasurementUnit" FunctionName="Хранилище SRSModel.SP_Select_MeasurementUnit">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_Select_Production" FunctionName="Хранилище SRSModel.SP_Select_Production">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_Select_Ranks" FunctionName="Хранилище SRSModel.SP_Select_Ranks">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_Select_Stock" FunctionName="Хранилище SRSModel.SP_Select_Stock">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_Update_Employers" FunctionName="Хранилище SRSModel.SP_Update_Employers" />
+          <FunctionImportMapping FunctionImportName="SP_Update_Ingredients" FunctionName="Хранилище SRSModel.SP_Update_Ingredients" />
+          <FunctionImportMapping FunctionImportName="SP_Update_MeasurementUnit" FunctionName="Хранилище SRSModel.SP_Update_MeasurementUnit" />
+          <FunctionImportMapping FunctionImportName="SP_Update_Production" FunctionName="Хранилище SRSModel.SP_Update_Production" />
+          <FunctionImportMapping FunctionImportName="SP_Update_Ranks" FunctionName="Хранилище SRSModel.SP_Update_Ranks" />
+          <FunctionImportMapping FunctionImportName="SP_Update_Stock" FunctionName="Хранилище SRSModel.SP_Update_Stock" />
+          <FunctionImportMapping FunctionImportName="Financial_SP_Delete_CreditInfo" FunctionName="Хранилище SRSModel.Financial_SP_Delete_CreditInfo" />
+          <FunctionImportMapping FunctionImportName="Financial_SP_Delete_CreditPayment" FunctionName="Хранилище SRSModel.Financial_SP_Delete_CreditPayment" />
+          <FunctionImportMapping FunctionImportName="Financial_SP_Delete_Payment" FunctionName="Хранилище SRSModel.Financial_SP_Delete_Payment" />
+          <FunctionImportMapping FunctionImportName="Financial_SP_Insert_CreditInfo" FunctionName="Хранилище SRSModel.Financial_SP_Insert_CreditInfo" />
+          <FunctionImportMapping FunctionImportName="Financial_SP_Insert_CreditPayment" FunctionName="Хранилище SRSModel.Financial_SP_Insert_CreditPayment" />
+          <FunctionImportMapping FunctionImportName="Financial_SP_Insert_Payment" FunctionName="Хранилище SRSModel.Financial_SP_Insert_Payment" />
+          <FunctionImportMapping FunctionImportName="Financial_SP_Select_CreditInfo" FunctionName="Хранилище SRSModel.Financial_SP_Select_CreditInfo">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Financial_SP_Select_CreditPayment" FunctionName="Хранилище SRSModel.Financial_SP_Select_CreditPayment">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Financial_SP_Select_Payment" FunctionName="Хранилище SRSModel.Financial_SP_Select_Payment">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Financial_SP_Update_CreditInfo" FunctionName="Хранилище SRSModel.Financial_SP_Update_CreditInfo" />
+          <FunctionImportMapping FunctionImportName="Financial_SP_Update_CreditPayment" FunctionName="Хранилище SRSModel.Financial_SP_Update_CreditPayment" />
+          <FunctionImportMapping FunctionImportName="Financial_SP_Update_Payment" FunctionName="Хранилище SRSModel.Financial_SP_Update_Payment" />
+          <FunctionImportMapping FunctionImportName="Production_SP_Delete_Buystocks" FunctionName="Хранилище SRSModel.Production_SP_Delete_Buystocks" />
+          <FunctionImportMapping FunctionImportName="Production_SP_Delete_Manufacture" FunctionName="Хранилище SRSModel.Production_SP_Delete_Manufacture" />
+          <FunctionImportMapping FunctionImportName="Production_SP_Delete_Sales_Of_Prod" FunctionName="Хранилище SRSModel.Production_SP_Delete_Sales_Of_Prod" />
+          <FunctionImportMapping FunctionImportName="Production_SP_Insert_Buystocks" FunctionName="Хранилище SRSModel.Production_SP_Insert_Buystocks" />
+          <FunctionImportMapping FunctionImportName="Production_SP_Insert_Manufacture" FunctionName="Хранилище SRSModel.Production_SP_Insert_Manufacture" />
+          <FunctionImportMapping FunctionImportName="Production_SP_Insert_Sales_Of_Prod" FunctionName="Хранилище SRSModel.Production_SP_Insert_Sales_Of_Prod" />
+          <FunctionImportMapping FunctionImportName="Production_SP_Select_Buystocks" FunctionName="Хранилище SRSModel.Production_SP_Select_Buystocks">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Production_SP_Select_Manufacture" FunctionName="Хранилище SRSModel.Production_SP_Select_Manufacture">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Production_SP_Select_Sales_Of_Prod" FunctionName="Хранилище SRSModel.Production_SP_Select_Sales_Of_Prod">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Production_SP_Update_Buystocks" FunctionName="Хранилище SRSModel.Production_SP_Update_Buystocks" />
+          <FunctionImportMapping FunctionImportName="Production_SP_Update_Manufacture" FunctionName="Хранилище SRSModel.Production_SP_Update_Manufacture" />
+          <FunctionImportMapping FunctionImportName="Production_SP_Update_Sales_Of_Prod" FunctionName="Хранилище SRSModel.Production_SP_Update_Sales_Of_Prod" />
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

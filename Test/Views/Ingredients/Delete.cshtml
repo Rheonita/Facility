@@ -1,0 +1,48 @@
+﻿@model Test.Models.Ingredients
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Ingredients</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Total_Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Total_Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Finished_Production.Name_FinPr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Finished_Production.Name_FinPr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Stock.Name_of_Stock)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Stock.Name_of_Stock)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

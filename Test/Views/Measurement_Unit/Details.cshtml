@@ -1,0 +1,26 @@
+﻿@model Test.Models.Measurement_Unit
+
+@{
+    ViewBag.Title = "Подробности";
+}
+
+<h2>Подробно</h2>
+
+<div>
+    <h4>Единица измерения</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name_MerUn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name_MerUn)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Редактировать", "Edit", new { id = Model.ID_MerUn }) |
+    @Html.ActionLink("Bернуться к списку", "Index")
+</p>

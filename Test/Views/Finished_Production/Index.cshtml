@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Test.Models.Finished_Production>
+
+@{
+    ViewBag.Title = "Готовая продукция";
+}
+
+<h2>Готовая продукция</h2>
+
+<p>
+    @Html.ActionLink("Добавить", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Наименование продукции
+        </th>
+        <th>
+            Стоимость продукции
+        </th>
+        <th>
+            Общее количество
+        </th>
+        <th>
+            Единица измерения
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name_FinPr)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Total_Amount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Measurement_Unit.Name_MerUn)
+        </td>
+        <td>
+            @Html.ActionLink("Изменить", "Edit", new { id=item.ID_FinPr }) |
+            @Html.ActionLink("Удалить", "Delete", new { id=item.ID_FinPr })
+        </td>
+    </tr>
+}
+
+</table>

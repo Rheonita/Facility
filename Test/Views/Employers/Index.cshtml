@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Test.Models.Employers>
+
+@{
+    ViewBag.Title = "Сотрудники";
+}
+
+<h2>Список сотрудников</h2>
+
+<p>
+    @Html.ActionLink("Добавить сотрудника", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @*@Html.DisplayNameFor(model => model.Name_of_Emp)*@
+            Имя
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.Ranks.Rank_name)*@
+            Должность
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.Payment)*@
+            Зарплата
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.Adress)*@
+            Адрес
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.Phone_Number)*@
+            Номер Телефона
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name_of_Emp)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ranks.Rank_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Payment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Adress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Phone_Number)
+        </td>
+        <td>
+            @Html.ActionLink("Редактировать", "Edit", new { id = item.ID_Employers }) |
+            @Html.ActionLink("Подробности", "Details", new { id = item.ID_Employers }) |
+            @Html.ActionLink("Удалить", "Delete", new { id = item.ID_Employers })
+        </td>
+    </tr>
+}
+
+</table>

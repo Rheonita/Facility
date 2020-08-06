@@ -1,0 +1,64 @@
+﻿@model Test.Models.Sales_of_Prod
+
+@{
+    ViewBag.Title = "Удаление";
+}
+
+<h2>Удалить</h2>
+
+<h3>Вы уверены что хотите удалить эту запись?</h3>
+<div>
+    <h4>Продажи продукции</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Total_Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Total_Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Employers.Name_of_Emp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employers.Name_of_Emp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Finished_Production.Name_FinPr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Finished_Production.Name_FinPr)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить" class="btn btn-default" /> |
+            @Html.ActionLink("Вернуться к списку", "Index")
+        </div>
+    }
+</div>

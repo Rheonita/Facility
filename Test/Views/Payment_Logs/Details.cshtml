@@ -1,0 +1,98 @@
+﻿@model Test.Models.Payment_Logs
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Payment_Logs</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Amount_of_work)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Amount_of_work)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sum_of_Bonus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sum_of_Bonus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Salary)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Salary)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Total_Payment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Total_Payment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BuyStock_Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BuyStock_Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Manufacture_Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Manufacture_Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sales_Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sales_Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaymentDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaymentDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Additional_Pay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Additional_Pay)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Employers.Name_of_Emp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employers.Name_of_Emp)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_PaymentLog }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,32 @@
+﻿@model Test.Models.Ranks
+
+@{
+    ViewBag.Title = "Удаление";
+}
+
+<h2>Удалить</h2>
+
+<h3>Вы уверены что хотите удалить запись?</h3>
+<div>
+    <h4>Должности</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Rank_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rank_name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить" class="btn btn-default" /> |
+            @Html.ActionLink("Вернуться к списку", "Index")
+        </div>
+    }
+</div>

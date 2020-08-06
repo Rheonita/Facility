@@ -1,0 +1,42 @@
+﻿@model Test.Models.Ingredients
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Ingredients</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Total_Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Total_Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Finished_Production.Name_FinPr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Finished_Production.Name_FinPr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Stock.Name_of_Stock)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Stock.Name_of_Stock)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_Ingredient }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

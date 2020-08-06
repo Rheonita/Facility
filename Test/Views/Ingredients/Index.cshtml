@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Test.Models.Ingredients>
+
+@{
+    ViewBag.Title = "Ингредиенты";
+}
+
+<h2>Ингредиенты</h2>
+
+<p>
+    @Html.ActionLink("Добавить", "Create")
+    @using (Html.BeginForm("Index", "Ingredients",FormMethod.Get))
+    {
+    <p>
+        Products: @Html.DropDownList("ProductsType", "All")
+        Title: @Html.TextBox("SearchString") <br />
+        <input type="submit" value="Filter" />
+    </p>
+}
+    </p>
+    <table class="table">
+        <tr>
+
+            <th>
+                @* @Html.DisplayNameFor(model => model.Total_Amount)*@
+                Наименование Продукции
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.Finished_Production.Name_FinPr)*@
+                Вид сырья
+            </th>
+            <th>
+                @* @Html.DisplayNameFor(model => model.Stock.Name_of_Stock)*@
+                Количество необходимого сырья
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Finished_Production.Name_FinPr)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Stock.Name_of_Stock)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Total_Amount)
+                </td>
+                <td>
+                    @Html.ActionLink("Редактировать", "Edit", new { id = item.ID_Ingredient }) |
+                    @* @Html.ActionLink("Подробности", "Details", new { id=item.ID_Ingredient }) |*@
+                    @Html.ActionLink("Удалить", "Delete", new { id = item.ID_Ingredient })
+                </td>
+            </tr>
+        }
+
+    </table>

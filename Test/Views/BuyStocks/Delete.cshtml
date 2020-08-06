@@ -1,0 +1,64 @@
+﻿@model Test.Models.BuyStock
+
+@{
+    ViewBag.Title = "Удаление";
+}
+
+<h2>Удалить</h2>
+
+<h3>Вы уверены что хотите удалить запись?</h3>
+<div>
+    <h4>Покупка сырья</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Кол-во:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Total_Amount)
+        </dd>
+
+        <dt>
+           Стоимость:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sum)
+        </dd>
+
+        <dt>
+            Дата:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            Ответственный сотрудник:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employers.Name_of_Emp)
+        </dd>
+
+        <dt>
+            Сырьё:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Stock.Name_of_Stock)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить" class="btn btn-default" /> |
+            @Html.ActionLink("Вернуться к списку", "Index")
+        </div>
+    }
+</div>

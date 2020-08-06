@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Test.Models.Credit_Info>
+
+@{
+    ViewBag.Title = "Кредиты";
+}
+
+<h2>Информация о кредитах</h2>
+
+<p>
+    @Html.ActionLink("Добавить", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Кредит
+        </th>
+        <th>
+            Сумма кредита
+        </th>
+        <th>
+            Дата открытия кредита
+        </th>
+        <th>
+            Срок кредита(месяцы)
+        </th>
+        <th>
+           Годовой процент
+        </th>
+        <th>
+           Процент пени
+        </th>
+        <th>
+           Ежемесячный взнос
+        </th>
+        <th>
+           Общая сумма выплат
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Credit_Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sum_of_Credit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date_of_issue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Credit_Term)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Year_Percent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fine_Sum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sum_of_Month_Pay)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Total_Sum_With_Year)
+        </td>
+        <td>
+            @Html.ActionLink("Изменить", "Edit", new { id=item.ID_Credit }) |
+            
+            @Html.ActionLink("Удалить", "Delete", new { id=item.ID_Credit })
+        </td>
+    </tr>
+}
+
+</table>

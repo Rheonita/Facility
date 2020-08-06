@@ -1,0 +1,50 @@
+﻿@model Test.Models.Manufacture
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Manufacture</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Total_Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Total_Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Employers.Name_of_Emp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employers.Name_of_Emp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Finished_Production.Name_FinPr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Finished_Production.Name_FinPr)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_Manufacture }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

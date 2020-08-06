@@ -1,0 +1,50 @@
+﻿@model Test.Models.Stock
+
+@{
+    ViewBag.Title = "Подробности";
+}
+
+<h2>Подробности</h2>
+
+<div>
+    <h4>Stock</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name_of_Stock)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name_of_Stock)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Total_Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Total_Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Measurement_Unit.Name_MerUn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Measurement_Unit.Name_MerUn)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Редактировать", "Edit", new { id = Model.ID_Stock }) |
+    @Html.ActionLink("Вернуться к списку", "Index")
+</p>

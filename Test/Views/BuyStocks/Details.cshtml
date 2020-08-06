@@ -1,0 +1,58 @@
+﻿@model Test.Models.BuyStock
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>BuyStock</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Total_Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Total_Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Employers.Name_of_Emp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employers.Name_of_Emp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Stock.Name_of_Stock)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Stock.Name_of_Stock)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_BuyStock }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

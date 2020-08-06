@@ -1,0 +1,50 @@
+﻿@model Test.Models.Credit_Repayment
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Credit_Repayment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Date_of_Repayment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date_of_Repayment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fair_Sum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fair_Sum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sum_of_Repayment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sum_of_Repayment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Credit_Info.Credit_Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Credit_Info.Credit_Description)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_Repayment }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

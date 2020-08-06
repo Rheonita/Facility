@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Test.Models.Stock>
+
+@{
+    ViewBag.Title = "Запасы сырья";
+}
+
+<h2>Сырье</h2>
+
+<p>
+    @Html.ActionLink("Добавить", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Наименование Сырья
+        </th>
+        <th>
+            Стоимость
+        </th>
+        <th>
+            Общее количество
+        </th>
+        <th>
+            Единица измерения
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name_of_Stock)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Total_Amount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Measurement_Unit.Name_MerUn)
+        </td>
+        <td>
+            @Html.ActionLink("Редактировать", "Edit", new { id=item.ID_Stock }) |
+            @Html.ActionLink("Подробности", "Details", new { id=item.ID_Stock }) |
+            @Html.ActionLink("Удалить", "Delete", new { id=item.ID_Stock })
+        </td>
+    </tr>
+}
+
+</table>
